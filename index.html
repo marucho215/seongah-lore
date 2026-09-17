@@ -36,6 +36,11 @@ a{color:inherit;}
 .identity-inner{max-width:960px;margin:0 auto;display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:6px;}
 .identity .kr{font-family:"Noto Serif KR",serif;font-size:19px;font-weight:700;letter-spacing:.02em;}
 .identity .en{font-size:10.5px;letter-spacing:.22em;color:var(--ink-faint);text-transform:uppercase;}
+.menu-toggle{
+  display:none;background:none;border:1px solid var(--line);padding:6px 14px;
+  font-family:inherit;font-size:11.5px;letter-spacing:.1em;color:var(--ink-soft);cursor:pointer;
+}
+.menu-toggle:hover{color:var(--ink);}
 
 /* ---- main nav ---- */
 nav.mainnav{
@@ -60,6 +65,18 @@ nav.mainnav{
 .subnav-inner a:first-child{padding-left:0;}
 .subnav-inner a:hover{color:var(--ink);}
 .subnav-inner a.active{color:var(--accent);font-weight:600;}
+
+@media (max-width:759px){
+  .identity .en{display:none;}
+  .menu-toggle{display:inline-block;}
+  nav.mainnav{display:none;position:static;}
+  nav.mainnav.open{display:block;}
+  .mainnav-inner{flex-direction:column;align-items:stretch;overflow-x:visible;padding-inline:24px;}
+  .mainnav-inner a{padding:14px 0;border-bottom:1px solid var(--line);}
+  .mainnav-inner a:last-child{border-bottom:none;}
+  .subnav-inner a{flex:1;text-align:center;padding-inline:6px;}
+  .subnav-inner a:first-child{padding-left:6px;}
+}
 
 /* ---- pages / sections ---- */
 .page{padding:52px 24px 80px;}
@@ -170,16 +187,18 @@ nav.mainnav{
 }
 .detail-voicelink:hover{opacity:.75;}
 .detail-voicelink::after{content:" ↗";}
-.detail-hero{display:grid;grid-template-columns:1fr;grid-template-areas:"head" "img" "basic";gap:20px;margin-bottom:28px;}
+.detail-hero{display:grid;grid-template-columns:1fr;grid-template-areas:"head" "img" "basic";gap:28px;margin-bottom:28px;}
 .detail-hero .detail-head{margin-bottom:0;grid-area:head;}
 .detail-hero .detail-basic{margin-bottom:0;grid-area:basic;}
-.detail-hero-image{grid-area:img;}
-.detail-hero-image img{display:block;width:100%;height:auto;object-fit:contain;transform-origin:center top;}
+.detail-hero-image{grid-area:img;text-align:center;}
+.detail-hero-image img{display:inline-block;width:auto;height:auto;max-width:75vw;max-height:54vh;object-fit:contain;}
+.detail-image-wide{margin:0 0 28px;text-align:center;}
+.detail-image-wide img{display:inline-block;width:auto;height:auto;max-width:88vw;max-height:41vh;object-fit:contain;}
 @media (min-width:760px){
   .detail-hero{grid-template-columns:65% 35%;grid-template-areas:"head img" "basic img";column-gap:32px;row-gap:20px;align-items:start;}
+  .detail-hero-image img{width:100%;max-width:none;max-height:none;transform:scale(var(--img-scale,1));transform-origin:center top;}
+  .detail-image-wide img{max-width:60%;max-height:450px;transform:scale(var(--img-scale,1));transform-origin:center top;}
 }
-.detail-image-wide{margin:0 0 28px;text-align:center;}
-.detail-image-wide img{display:inline-block;max-width:60%;max-height:450px;width:auto;height:auto;object-fit:contain;transform-origin:center top;}
 .detail-head{border-bottom:1px solid var(--line);padding-bottom:24px;margin-bottom:28px;}
 .detail-affil{font-size:11.5px;color:var(--ink-faint);letter-spacing:.08em;margin-bottom:10px;}
 .detail-name{font-size:clamp(24px,3.6vw,32px);margin:0 0 6px;}
@@ -230,10 +249,11 @@ body{scrollbar-color:var(--line) transparent;}
   <div class="identity-inner">
     <span class="kr">성아여자고등학교</span>
     <span class="en">SEONG-AH GIRLS' HIGHSCHOOL</span>
+    <button class="menu-toggle" id="menuToggle" type="button" aria-expanded="false">MENU</button>
   </div>
 </div>
 
-<nav class="mainnav">
+<nav class="mainnav" id="mainNavBar">
   <div class="mainnav-inner" id="mainNav">
     <a href="#main" data-route="main">MAIN PAGE</a>
     <a href="#universe" data-route="universe">UNIVERSE</a>
@@ -1441,7 +1461,7 @@ function renderDetail(id){
   });
   basicHtml += '</div>';
 
-  var imgScaleStyle = ' style="transform:scale('+(c.imageScale || 1)+')"';
+  var imgScaleStyle = ' style="--img-scale:'+(c.imageScale || 1)+'"';
 
   if(c.image && c.imageLayout === "wide"){
     html += headHtml;
@@ -1512,6 +1532,19 @@ function route(){
   }
   renderMain();
 }
+
+var mainNavBar = document.getElementById("mainNavBar");
+var menuToggle = document.getElementById("menuToggle");
+menuToggle.addEventListener("click", function(){
+  var isOpen = mainNavBar.classList.toggle("open");
+  menuToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+});
+mainNav.querySelectorAll("a").forEach(function(a){
+  a.addEventListener("click", function(){
+    mainNavBar.classList.remove("open");
+    menuToggle.setAttribute("aria-expanded", "false");
+  });
+});
 
 window.addEventListener("hashchange", route);
 route();

@@ -186,7 +186,8 @@ nav.mainnav{
 .detail-image-wide img{display:inline-block;width:auto;height:auto;max-width:88vw;max-height:41vh;object-fit:contain;}
 @media (min-width:760px){
   .detail-hero{grid-template-columns:65% 35%;grid-template-areas:"head img" "basic img";column-gap:32px;row-gap:20px;align-items:start;}
-  .detail-hero-image img{width:100%;max-width:none;max-height:none;transform:scale(var(--img-scale,1));transform-origin:center top;}
+  .detail-hero-image{align-self:center;}
+  .detail-hero-image img{width:calc(100% * var(--img-scale,1));max-width:none;max-height:none;}
   .detail-image-wide img{max-width:60%;max-height:450px;transform:scale(var(--img-scale,1));transform-origin:center top;}
 }
 .detail-head{border-bottom:1px solid var(--line);padding-bottom:24px;margin-bottom:28px;}

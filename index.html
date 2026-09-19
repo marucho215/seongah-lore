@@ -1,0 +1,1551 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<title>성아여자고등학교</title>
+<style>
+:root{
+  --bg:#f8f6fb;
+  --bg-deep:#f1eef8;
+  --surface:#ffffff;
+  --ink:#1c2340;
+  --ink-soft:#454b6b;
+  --ink-faint:#82869e;
+  --line:#dcd7ea;
+  --accent:#2a3466;
+}
+*{box-sizing:border-box;}
+[hidden]{display:none!important;}
+img{max-width:100%;}
+html,body{margin:0;}
+body{
+  background:var(--bg);color:var(--ink);
+  font-family:"Noto Sans KR","Pretendard",system-ui,sans-serif;
+  -webkit-font-smoothing:antialiased;
+  font-size:15px;
+}
+::selection{background:var(--line);color:var(--accent);}
+h1,h2,h3,h4{font-family:"Noto Serif KR",serif;font-weight:600;}
+a{color:inherit;}
+.wrap{max-width:960px;margin:0 auto;padding-inline:24px;}
+
+/* ---- top identity bar ---- */
+.identity{border-bottom:1px solid var(--line);padding:22px 24px;background:var(--bg-deep);}
+.identity-inner{max-width:960px;margin:0 auto;display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:6px;}
+.identity .kr{font-family:"Noto Serif KR",serif;font-size:19px;font-weight:700;letter-spacing:.02em;}
+.identity .en{font-size:10.5px;letter-spacing:.22em;color:var(--ink-faint);text-transform:uppercase;}
+.menu-toggle{
+  display:none;background:none;border:1px solid var(--line);padding:6px 14px;
+  font-family:inherit;font-size:11.5px;letter-spacing:.1em;color:var(--ink-soft);cursor:pointer;
+}
+.menu-toggle:hover{color:var(--ink);}
+
+/* ---- main nav ---- */
+nav.mainnav{
+  position:sticky;top:env(safe-area-inset-top,0px);z-index:50;
+  background:var(--surface);border-bottom:1px solid var(--line);
+}
+.mainnav-inner{max-width:960px;margin:0 auto;display:flex;align-items:stretch;padding-inline:24px;overflow-x:auto;}
+.mainnav-inner a{
+  font-size:12.5px;letter-spacing:.1em;color:var(--ink-soft);text-decoration:none;
+  padding:15px 18px;border-bottom:2px solid transparent;white-space:nowrap;
+}
+.mainnav-inner a:hover{color:var(--ink);}
+.mainnav-inner a.active{color:var(--ink);border-bottom-color:var(--accent);font-weight:500;}
+
+/* ---- sub nav (character categories) ---- */
+.subnav{border-bottom:1px solid var(--line);background:var(--bg-deep);}
+.subnav-inner{max-width:960px;margin:0 auto;display:flex;gap:0;padding-inline:24px;overflow-x:auto;}
+.subnav-inner a{
+  font-size:11.5px;letter-spacing:.12em;color:var(--ink-faint);text-decoration:none;
+  padding:11px 16px;white-space:nowrap;border-right:1px solid var(--line);
+}
+.subnav-inner a:first-child{padding-left:0;}
+.subnav-inner a:hover{color:var(--ink);}
+.subnav-inner a.active{color:var(--accent);font-weight:600;}
+
+@media (max-width:759px){
+  .identity .en{display:none;}
+  .menu-toggle{display:inline-block;}
+  nav.mainnav{display:none;position:static;}
+  nav.mainnav.open{display:block;}
+  .mainnav-inner{flex-direction:column;align-items:stretch;overflow-x:visible;padding-inline:24px;}
+  .mainnav-inner a{padding:14px 0;border-bottom:1px solid var(--line);}
+  .mainnav-inner a:last-child{border-bottom:none;}
+  .subnav-inner a{flex:1;text-align:center;padding-inline:6px;}
+  .subnav-inner a:first-child{padding-left:6px;}
+}
+
+/* ---- pages / sections ---- */
+.page{padding:44px 24px 64px;}
+.page--universe{padding:60px 24px 96px;}
+.page--terms{padding:38px 24px 72px;}
+.page--directory{padding:36px 24px 60px;}
+.page-title{font-family:"Noto Serif KR",serif;font-size:clamp(20px,3vw,25px);margin:0 0 26px;font-weight:600;}
+.page-body{max-width:960px;margin:0 auto;}
+.page-body p{font-size:14.5px;line-height:1.95;color:var(--ink-soft);margin:0 0 14px;max-width:66ch;}
+.page-body p:last-child{margin-bottom:0;}
+
+/* ---- main page: administrative front page ---- */
+.main-hero{border-bottom:1px solid var(--line);background:var(--bg-deep);padding:30px 24px 0;}
+.main-hero-inner{max-width:960px;margin:0 auto;display:grid;grid-template-columns:1.6fr .85fr;gap:24px 48px;align-items:start;padding-bottom:26px;}
+@media (max-width:760px){.main-hero-inner{grid-template-columns:1fr;}}
+.main-hero-en{font-family:"Noto Serif KR",serif;font-weight:700;font-size:clamp(23px,4vw,36px);letter-spacing:.01em;line-height:1.16;margin:0 0 10px;text-wrap:balance;}
+.main-hero-sub{font-size:13.5px;color:var(--ink-soft);margin:0 0 16px;padding-bottom:14px;border-bottom:1px solid var(--line);}
+.notice-board{padding-top:26px;}
+.notice-board .nb-head{font-size:10.5px;letter-spacing:.12em;color:var(--ink-faint);margin:0 0 6px;}
+.notice-board .nb-list{list-style:none;margin:0;padding:0;}
+.notice-board .nb-list li{border-top:1px solid var(--line);}
+.notice-board .nb-list a{display:block;padding:9px 0;font-size:12.5px;color:var(--ink-soft);text-decoration:none;}
+.notice-board .nb-list a:hover{color:var(--accent);}
+.notice-board .nb-list a::before{content:"— ";color:var(--ink-faint);}
+.status-strip{border-top:1px solid var(--line);padding:10px 24px;}
+.status-strip-inner{max-width:960px;margin:0 auto;display:flex;flex-wrap:wrap;gap:4px 24px;}
+.status-item{font-size:10.5px;letter-spacing:.05em;color:var(--ink-faint);display:inline-flex;gap:6px;}
+.status-item b{color:var(--ink-soft);font-weight:500;}
+
+/* ---- universe: editorial feature layout ---- */
+.wv-title{font-family:"Noto Serif KR",serif;font-size:clamp(34px,7vw,56px);letter-spacing:.01em;margin:0 0 22px;}
+.wv-rule{border:0;border-top:2px solid var(--ink);margin:0 0 44px;}
+.wv-section{margin-bottom:60px;}
+.wv-section:last-child{margin-bottom:0;}
+.wv-num{display:grid;grid-template-columns:52px 1fr;align-items:end;gap:12px;margin-bottom:22px;}
+.wv-num .num{font-family:"Noto Serif KR",serif;font-size:36px;line-height:.7;color:var(--line);}
+.wv-num h2{font-size:16.5px;margin:0 0 9px;font-weight:600;letter-spacing:.01em;padding-bottom:11px;border-bottom:1px solid var(--line);}
+.wv-col{max-width:62ch;}
+.wv-col p{font-size:14.5px;line-height:2;color:var(--ink-soft);margin:0 0 16px;}
+.wv-col p:last-child{margin-bottom:0;}
+.wv-faction{padding:20px 0;border-top:1px solid var(--line);}
+.wv-faction:first-child{border-top:none;padding-top:0;}
+.wv-faction .wf-name{font-family:"Noto Serif KR",serif;font-size:15px;margin:0 0 10px;}
+.wv-faction p{font-size:13.5px;line-height:1.9;color:var(--ink-soft);margin:0 0 6px;max-width:62ch;}
+.wv-faction p:last-child{margin-bottom:0;}
+
+/* ---- terms: dry ordinance-style document ---- */
+.terms-body{font-family:"Noto Serif KR",serif;max-width:68ch;}
+.terms-body p{font-size:13.5px;line-height:1.85;color:var(--ink-soft);margin:0 0 10px;max-width:68ch;}
+.terms-h{font-size:12.5px;font-weight:700;color:var(--ink);margin:24px 0 6px;font-family:"Noto Sans KR",sans-serif;letter-spacing:.03em;}
+.terms-h:first-child{margin-top:0;}
+.terms-list{list-style:none;counter-reset:term;margin:0 0 10px;padding:0;}
+.terms-list li{counter-increment:term;font-size:13.5px;line-height:1.85;color:var(--ink-soft);margin:0 0 4px;padding-left:1.5em;position:relative;}
+.terms-list li::before{content:counter(term)". ";position:absolute;left:0;color:var(--ink-faint);}
+
+.hr{border:0;border-top:1px solid var(--line);margin:36px 0;}
+
+/* ---- character landing: 3-way split (kept — the 10/10/2 count needs to read at a glance) ---- */
+.cat-tiles{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);}
+.cat-tile{padding:26px 20px;border-right:1px solid var(--line);text-decoration:none;color:inherit;display:block;}
+.cat-tiles .cat-tile:last-child{border-right:none;}
+@media (max-width:700px){
+  .cat-tiles{grid-template-columns:1fr;}
+  .cat-tile{border-right:none;border-bottom:1px solid var(--line);}
+  .cat-tiles .cat-tile:last-child{border-bottom:none;}
+}
+.cat-tile:hover{background:var(--bg-deep);}
+.cat-tile .ct-en{font-size:10.5px;letter-spacing:.16em;color:var(--ink-faint);margin-bottom:8px;}
+.cat-tile .ct-kr{font-size:16px;font-family:"Noto Serif KR",serif;margin-bottom:8px;}
+.cat-tile .ct-count{font-size:11.5px;color:var(--ink-faint);font-variant-numeric:tabular-nums;}
+
+/* ---- character grid: 2-col kept, but no uniform box-per-card ---- */
+.char-grid{display:grid;grid-template-columns:1fr 1fr;column-gap:34px;row-gap:0;}
+@media (max-width:680px){.char-grid{grid-template-columns:1fr;}}
+.char-card{padding:22px 0 24px;border-top:1px solid var(--line);}
+.cc-top{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:4px;}
+.cc-affil{font-size:11px;color:var(--ink-faint);letter-spacing:.02em;}
+.cc-age{font-size:11px;color:var(--ink-faint);}
+.cc-name{font-size:18px;font-family:"Noto Serif KR",serif;margin:2px 0 2px;}
+.cc-alias{font-size:12.5px;color:var(--accent);margin-bottom:10px;min-height:1.4em;}
+.cc-ability{font-size:12px;color:var(--ink-faint);margin-bottom:10px;}
+.cc-ability b{font-weight:500;color:var(--ink-soft);}
+.cc-intro{font-size:13px;line-height:1.8;color:var(--ink-soft);margin-bottom:14px;}
+.cc-link{font-size:11.5px;letter-spacing:.08em;color:var(--ink);text-decoration:none;}
+.cc-link:hover{color:var(--accent);}
+.cc-link::after{content:" →";}
+
+/* ---- detail page ---- */
+.detail-top{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px 20px;margin-bottom:22px;}
+.detail-back{
+  font-size:12px;color:var(--ink-faint);text-decoration:none;display:inline-block;
+}
+.detail-back:hover{color:var(--ink);}
+.detail-back::before{content:"← ";}
+.detail-voicelink{
+  font-size:12px;color:var(--accent);text-decoration:none;display:inline-block;
+  border-bottom:1px solid var(--accent);padding-bottom:1px;
+}
+.detail-voicelink:hover{opacity:.75;}
+.detail-voicelink::after{content:" ↗";}
+.detail-hero{display:grid;grid-template-columns:1fr;grid-template-areas:"head" "img" "basic";gap:28px;margin-bottom:28px;}
+.detail-hero .detail-head{margin-bottom:0;grid-area:head;}
+.detail-hero .detail-basic{margin-bottom:0;grid-area:basic;}
+.detail-hero-image{grid-area:img;text-align:center;}
+.detail-hero-image img{display:inline-block;width:auto;height:auto;max-width:75vw;max-height:54vh;object-fit:contain;}
+.detail-image-wide{margin:0 0 28px;text-align:center;}
+.detail-image-wide img{display:inline-block;width:auto;height:auto;max-width:88vw;max-height:41vh;object-fit:contain;}
+@media (min-width:760px){
+  .detail-hero{grid-template-columns:65% 35%;grid-template-areas:"head img" "basic img";column-gap:32px;row-gap:20px;align-items:start;}
+  .detail-hero-image img{width:100%;max-width:none;max-height:none;transform:scale(var(--img-scale,1));transform-origin:center top;}
+  .detail-image-wide img{max-width:60%;max-height:450px;transform:scale(var(--img-scale,1));transform-origin:center top;}
+}
+.detail-head{border-bottom:1px solid var(--line);padding-bottom:24px;margin-bottom:28px;}
+.detail-affil{font-size:11.5px;color:var(--ink-faint);letter-spacing:.08em;margin-bottom:10px;}
+.detail-name{font-size:clamp(24px,3.6vw,32px);margin:0 0 6px;}
+.detail-alias{font-size:14px;color:var(--accent);margin-bottom:4px;}
+.detail-sub{font-size:13px;color:var(--ink-faint);}
+.detail-basic{border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);margin-bottom:28px;}
+.detail-basic .row{display:flex;border-bottom:1px solid var(--line);}
+.detail-basic .row:last-child{border-bottom:none;}
+.detail-basic .row b{
+  flex:none;width:108px;padding:9px 14px 9px 2px;font-size:12px;color:var(--ink-faint);
+  font-weight:500;
+}
+.detail-basic .row span{padding:9px 2px 9px 0;font-size:13.5px;color:var(--ink);flex:1;}
+.detail-section{margin-bottom:26px;}
+.detail-section h4{font-size:13px;letter-spacing:.04em;color:var(--accent);margin:0 0 10px;font-family:"Noto Sans KR",sans-serif;font-weight:700;}
+.detail-section p{font-size:14px;line-height:1.95;color:var(--ink-soft);margin:0 0 8px;}
+.detail-section p:last-child{margin-bottom:0;}
+.detail-related{font-size:12.5px;margin-top:6px;}
+.detail-related a{color:var(--accent);text-decoration:none;}
+.detail-related a:hover{text-decoration:underline;}
+
+/* ---- search ---- */
+.search-box{
+  display:flex;align-items:center;gap:8px;border:1px solid var(--line);
+  padding:9px 14px;margin-bottom:22px;max-width:280px;background:var(--surface);
+}
+.search-box svg{flex:none;color:var(--ink-faint);}
+.search-box input{border:none;outline:none;background:transparent;font-size:13.5px;color:var(--ink);width:100%;font-family:inherit;}
+.search-box input::placeholder{color:var(--ink-faint);}
+.empty-note{font-size:13px;color:var(--ink-faint);padding:20px 0;display:none;}
+.empty-note.show{display:block;}
+
+footer{padding:30px 24px;border-top:1px solid var(--line);}
+footer .wrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;}
+footer span{font-size:11.5px;color:var(--ink-faint);}
+footer a{font-size:11.5px;color:var(--ink-faint);text-decoration:none;}
+footer a:hover{color:var(--ink);}
+
+body{scrollbar-color:var(--line) transparent;}
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;600;700&family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="identity">
+  <div class="identity-inner">
+    <span class="kr">성아여자고등학교</span>
+    <span class="en">SEONG-AH GIRLS' HIGHSCHOOL</span>
+    <button class="menu-toggle" id="menuToggle" type="button" aria-expanded="false">MENU</button>
+  </div>
+</div>
+
+<nav class="mainnav" id="mainNavBar">
+  <div class="mainnav-inner" id="mainNav">
+    <a href="#main" data-route="main">MAIN PAGE</a>
+    <a href="#universe" data-route="universe">UNIVERSE</a>
+    <a href="#character" data-route="character">CHARACTER</a>
+    <a href="#terms" data-route="terms">TERMS OF USE</a>
+  </div>
+</nav>
+
+<div class="subnav" id="subNav" hidden>
+  <div class="subnav-inner" id="subNavInner">
+    <a href="#character/sin" data-cat="sin">SIN</a>
+    <a href="#character/virtue" data-cat="virtue">VIRTUE</a>
+    <a href="#character/infirmary" data-cat="infirmary">2ND INFIRMARY</a>
+  </div>
+</div>
+
+<main id="app"></main>
+
+<footer>
+  <div class="wrap">
+    <span>성아여자고등학교</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+"use strict";
+
+/* ============================================================
+   Character data — profile text is transcribed verbatim from
+   the character's own official profile. "alias" is the card
+   headline used on the source site's own character cards.
+   ============================================================ */
+var CHARS = {
+
+hwayoung:{
+ name:"화영 (火煐)", sub:"", alias:"이국의 철옹성",
+ image:"images/hwayoung.png", imageLayout:"portrait", imageScale:1.18,
+ category:"virtue", ability:"사명의 이행",
+ intro:"사극 드라마로 한국어를 배웠다. 맞을수록 강해지는 건 부작용이 아니라 전략이다.",
+ basic:[
+   ["", "불 화(火)에 빛날 영(映). 타국에서 살게 되며 새로 지은 이름."],
+   ["", "본명: Maria Apoy Dimagiba De Los Reyes (마리아 아포이 디마기바 데 로스 레예스)"],
+   ["성별","데미걸 (she/they)"],["나이","19세"],["국적","필리핀"],["소속","특별 생활 지도부"],
+   ["키워드","인내 / 행동대장 / (명예) 소방관 / 이민자"],
+   ["포지션","성아고의 든든한 탱커이자 해결사. 남이 저지른 사고를 수습하거나, 위험한 상황에서 가장 먼저 앞장서는 행동대장."]
+ ],
+ sections:[
+   {h:"외형", p:[
+     "체형: 171cm, 80kg. 적당히 듬직한 체구와 탄탄한 근육질 몸매.",
+     "헤어스타일: 녹두색/갈색 반반 컬러의 풍성한 곱슬머리. 묶지 않고 풀어헤친 채로 어깨 아래까지 자유분방하게 흘러내림.",
+     "얼굴: 갈색 피부, 이국적인 이목구비를 가진 의외의 미인. 순하고 나른해 보이는 처진 눈매와 풍성한 속눈썹.",
+     "눈동자: 붉은 눈동자 안에 검은 초승달 동공이 떠 있음. 평소엔 누운 U자형 초승달이지만, 아픔을 인내하는 과정에서 점점 보름달처럼 차오름.",
+     "흉터: 입과 턱 주변에 짙게 남은 화상 흉터와 듬성듬성한 턱수염이 가감 없이 드러나 있음.",
+     "복장: 소방관 방화복을 일상복으로 개조한 유니크한 스타일. 방화복 상의를 크롭탑처럼 짧게 자르고, 하의는 카고 바지 형태로 리폼함. 형광 반사띠를 패션 아이템처럼 곳곳에 배치.",
+     "액세서리: 양쪽 귓볼에 커다란 금색 링 귀걸이. 투박한 검은 워커와 손목을 덮는 가죽 장갑."
+   ]},
+   {h:"담당 미덕 & 수호천사", p:[
+     "담당 미덕: 인내",
+     "수호천사: 우리엘 — 이명: 신의 불꽃",
+     "외형: 흘러내리는 듯한 청동 메카의 형상. 메카의 하관 부분은 화영의 흉터진 턱처럼 뭉개져 있음."
+   ]},
+   {h:"이능력", p:[
+     "[사명의 이행]",
+     "물리적 타격이나 고통을 회피하지 않고 온몸으로 받아냄.",
+     "가해진 모든 고통과 충격을 고열로 변환시켜 자신의 전력으로 사용. 화영이 공격을 많이 받을수록 우리엘이 더 뜨겁게 달궈짐.",
+     "초승달 동공이 보름달에 가까워질수록 축적된 인내가 임계점에 달하고 있다는 신호."
+   ]},
+   {h:"성격", p:[
+     "필리핀에서 온 이민자지만, 한국어를 사극 드라마로 배운 탓에 하오체를 구사함. 1인칭은 “소인(小人)”, 2인칭은 “~공(公)”.",
+     "행동 원리: 머리보다 행동이 앞서는 쾌활한 4차원 사고뭉치지만, 전투에서는 강한 책임감을 보임.",
+     "승부욕: 점심 메뉴 내기부터 목숨을 건 전투까지, 그 어떤 승부에서도 패배를 용납하지 않는 강한 자존심의 소유자.",
+     "“마음 가는 대로 사는 것이 죄라면, 소인은 즉결 처형감이오!”"
+   ]},
+   {h:"관계", p:[
+     "【주요】vs 특별 생활 지도부: 팀의 방패이자 돌격대장. 누군가가 위험에 처하면 이유를 묻기 전에 몸이 먼저 움직임.",
+     "【부가】vs 이난 & 마근아: 난장판 뒷처리 3인조. 화영이 몸으로 막고, 마근아가 규칙으로 틀을 잡고, 이난이 신경독으로 마무리하는 암묵적 분업 체계.",
+     "【부가】vs 류민트: 성아여고에서 전투 스타일이 통하는 유일한 상대. 몸이 먼저 움직이는 방식이 같아서 말 없이도 호흡이 맞음."
+   ]}
+ ]
+},
+
+unsim:{
+ name:"강운심", sub:"", alias:"Hot Topic",
+ image:"images/unsim.png", imageLayout:"portrait",
+ category:"sin", ability:"화제(火題)",
+ intro:"SNS에 올린 폭로가 불길이 된다. 그 불이 자신을 향해 역류하기도 한다.",
+ voicebank:"https://bowlroll.net/file/353322",
+ basic:[
+   ["성별","트랜스 여성"],["나이","18세"],["출신","부산"],["소속","특별 생활 지도부"],
+   ["키워드","분노 / 정보통 / 트러블 메이커 / SNS 중독"],
+   ["포지션","교내 최고의 정보 수집가이자 확성기. 취재하다 사고를 치고, 사고를 치면서 또 취재함."]
+ ],
+ sections:[
+   {h:"외형", p:[
+     "체형: 176cm의 훤칠한 장신.",
+     "헤어스타일: 채도 높은 붉은색 긴 머리. 양갈래로 높게 묶은 트윈테일, 양갈래 부분이 새의 날개 모양.",
+     "얼굴: 주근깨가 가득한 개구쟁이 같은 얼굴. 짓궂은 인상을 더해주는 상어 이빨.",
+     "눈: 선홍색 홍채. (좌) 초록색 리트윗 마크 동공. (우) 붉은색 하트 마크 동공. 분노 게이지가 완전히 차오르면 동공이 네온 사인처럼 빛남.",
+     "복장: 규정을 어기고 짧게 줄인 치마와 느슨하게 맨 넥타이. 활동성을 위해 운동화 끈을 꽉 조여 매고 있음. 얼굴, 무릎, 손가락 등 전신에 반창고가 덕지덕지 붙어 있음. (취재하다 다치거나 싸우고 다닌 훈장)"
+   ]},
+   {h:"담당 죄종 & 계약 악마", p:[
+     "담당 죄종: 분노 (Wrath)",
+     "계약 악마: 사탄 — 이명: 분노의 화신",
+     "평소 외형: 운심의 머리 위가 둥지인 마냥 눌러붙어 사는 작고 하얀 흰머리오목눈이. 평소엔 일반적인 새들처럼 귀엽게 재잘거림.",
+     "능력 활성화 시: 날카로운 소리로 울부짖으며 푸른 불꽃의 불사조 형상으로 거대해짐."
+   ]},
+   {h:"이능력", p:[
+     "[화제(火題)]",
+     "단순히 자신이 느끼는 분노를 넘어서, 대중의 화력을 에너지원으로 삼음.",
+     "운심이 퍼뜨린 정보나 게시물이 SNS상에서 좋아요나 리트윗을 많이 받을수록, 사탄이 다루는 불길의 위력이 기하급수적으로 강해짐.",
+     "메커니즘: 들불처럼 번져나가는 SNS의 파급력을 물리적 화염으로 변환. 소문을 연료로 삼아 상대방을 말 그대로 “화형”시켜버린다.",
+     "역반응: 공감이 축적될수록 불길이 운심 자신을 향해 역류함. 화력이 임계치를 넘으면 사탄의 열기가 운심을 안에서부터 태우기 시작하며, 극도로 달아오른 상태에서 능력을 지속하면 운심 본인이 먼저 소진됨."
+   ]},
+   {h:"패널티 — 금단 증상", p:[
+     "화력이 충전되지 않는 조용한 상태가 지속되면 불안감이 신체 증상으로 나타남. 손이 떨리거나 체온이 올라감. 본인은 “그냥 더운 것”이라고 우김."
+   ]},
+   {h:"성격", p:[
+     "항상 스마트폰을 손에서 놓지 않으며, 실시간 트렌드와 가십거리에 목숨을 검.",
+     "행동 패턴: SNS 중독자로, 종종 일상적 대화에도 밈이나 신조어를 섞어 씀. 호기심이 왕성하고 행동력이 앞서서 사고를 치고 다니는 트러블 메이커.",
+     "화가 뻗칠 때: 적의 약점이나 흑역사를 SNS에 폭로하고, 실시간 트렌드에 올림으로써 화력(진짜)을 충전."
+   ]},
+   {h:"관계", p:[
+     "【주요】vs 특별 생활 지도부: 팀의 정보망이자 가장 큰 소음원. 운심이 취재해 온 정보가 팀의 판단 근거가 되는 경우가 많지만, 그 과정에서 사고가 터지는 경우도 그만큼 많음.",
+     "【주요】vs 마근아: 원수지간. 운심의 복장 불량과 SNS 폭로전이 마근아의 규칙 집행과 정면충돌하는 것이 일상.",
+     "【부가】vs 세이야 히쿠도: 성아여고 최악의 폭주 듀오. 히쿠도가 관심을 끌려고 사고를 치면 강운심이 합류해 규모가 두 배로 커지는 구조. 수습은 항상 남의 몫."
+   ]}
+ ]
+},
+
+effie:{
+ name:"에피 미노스 (Effie Minos)", sub:"", alias:"추억의 스캐빈저",
+ category:"sin", ability:"아귀(鴉口)",
+ intro:"4년째 고3이다. 졸업을 못 하는 게 아니라 안 하는 것이다.",
+ basic:[
+   ["성별","여성"],["나이","23세 (고등학교 3학년)"],["국적","그리스계 한국인"],["소속","특별 생활 지도부"],
+   ["키워드","탐욕 / 주인공 / 멘헤라 / 스캐빈저 / 수집가"],
+   ["특이사항","고등학교 3학년만 4년째 유급 중. 도합 7년째 재학 중."]
+ ],
+ sections:[
+   {h:"외형", p:[
+     "체형: 145cm. 성장이 멈춘 듯 매우 작고 어려 보임. 생긴 것만 보면 딱 고등학생 정도.",
+     "헤어스타일: 보라색이 감도는 탁한 회색 단발머리. 관리가 전혀 안 된 엉성한 반묶음 양갈래. 눈을 거의 다 덮는 긴 앞머리 때문에 답답하고 음침한 인상을 줌.",
+     "얼굴: 생기 없이 창백하고 다크서클이 짙게 내려앉은 병약한 안색. 앞머리 사이로 희미하게 보이는 조리개 모양의 흰 육각형 동공이 특징. 평소엔 조리개가 느슨하게 열려 있다가, 수집하고 싶은 대상(추억)을 발견하면 찰칵 하고 조여지며 초점을 맞춤.",
+     "복장: 교복 위에 오버핏 보라색 집업 후드티를 입고, 모자까지 푹 눌러쓰는 경우가 잦음. 후드티 주머니는 온갖 잡동사니와 쓰레기로 항상 불룩하게 튀어나와 있음. 신발은 낡고 더러워진 운동화를 구겨 신음."
+   ]},
+   {h:"담당 죄종 & 계약 악마", p:[
+     "담당 죄종: 탐욕 (Greed)",
+     "계약 악마: 맘몬 (애칭: 카오)",
+     "외형: 에피가 키우는 것으로 추정되는 다리가 3개인 귀여운 까마귀. 에피의 조리개 동공은 맘몬과 서로 연결되었다는 상징. 카오라는 애칭은 까마귀 울음소리에서 유래됨.",
+     "본질: 무엇이든 주워 먹을 수 있으며, 그 뱃속은 물리적 한계가 없는 무한한 공간으로 연결됨."
+   ]},
+   {h:"이능력", p:[
+     "[아귀(鴉口)]",
+     "에피는 자신의 탐욕을 채우기 위해 물건, 쓰레기, 정보 등을 맘몬의 뱃속 무한 공간에 끝없이 저장함.",
+     "동공의 조리개가 조여지는 순간, 에피의 시야에 든 모든 광경이 맘몬의 뱃속에 영구히 저장됨."
+   ]},
+   {h:"패널티 — 공허한 수집", p:[
+     "아귀(카오)의 뱃속에 저장한 것들은 꺼내봐도 만족감이 없음. 더 많이 채울수록 빈자리가 더 크게 느껴짐. 카오가 배고프다는 듯 에피 주머니를 쪼아대는 빈도가 늘어남."
+   ]},
+   {h:"성격 & 배경", p:[
+     "기본적으로 우울하고 불만에 차 있으며 자존감이 바닥을 침. 타인의 친절을 언젠가 갚아야 할 빚으로 느껴 부담스러워함.",
+     "가정 환경: 아버지(에드 미노스)의 사랑과 합당한 통제마저 족쇄로 느끼는 탓에 가출 상태. 갈 곳 없는 자신을 받아준 특별 생활 지도부 부원들을 진짜 가족으로 여김.",
+     "유급의 진실: 단순한 학업 부진이 아님. 탐욕의 죄종을 가진 에피는 학교 친구들과 쌓은 우정과 추억마저 자신의 소유물로 인식하여 수집하려 함. 졸업을 하면 이 관계가 끊어지거나 변질될 것을 두려워하여, 영원히 이 시절을 소유하기 위해 고의적으로 졸업 요건을 채우지 않고 학교에 머무르고 있음."
+   ]},
+   {h:"관계", p:[
+     "【주요】vs 에드 미노스 (아버지): 학교 외부의 거대한 권력. 에피를 통제하려는 아버지에 맞서 정치적/물리적으로 대립 중. 사랑과 통제를 구분하지 못하는 에피에게 아버지의 존재 자체가 가장 복잡한 감정의 원천.",
+     "【주요】vs 특별 생활 지도부: 에피가 유급을 반복하며 지키려는 것들의 실체. 갈 곳 없는 자신을 받아준 유일한 가족. 이들과의 추억을 영원히 소유하고 싶다는 탐욕이 7년째 재학의 진짜 이유.",
+     "【부가】vs 류민트: 입부 신청 중이나 유보 중. 민트가 가져오는 혼란의 규모가 너무 커서 결정을 미루고 있는 사이, 민트는 이미 멤버인 것처럼 출몰하고 있음."
+   ]}
+ ]
+},
+
+inan:{
+ name:"이난", sub:"", alias:"살아있는 냉동고",
+ category:"virtue", ability:"강제 진정",
+ intro:"두개골 천공술을 권하는 건 진심이다. 그리고 실제로 낫는다.",
+ basic:[
+   ["성별","여성"],["나이","17세 (하지만 모두의 정신적 언니)"],["소속","특별 생활 지도부 부장"],
+   ["키워드","절제 / 명예 의사 / 갑분싸 (진짜) / 엉뚱함 / 인간 냉동고"],
+   ["포지션","과열된 분위기를 물리적/화학적으로 진정시키는 뒷처리 담당. 마근아, 화영과 함께 난장판 수습조."]
+ ],
+ sections:[
+   {h:"외형", p:[
+     "체형: 167cm. 비교적 근육이 적고 지방이 많아 말랑한 편.",
+     "헤어스타일: 본래 흑발이나 연한 청록색으로 염색함. 관리를 안 해서 뿌리가 검게 자라난 상태. 뒤쪽 기장이 더 짧은 칼단발. 이마를 덮는 단정한 풀뱅 앞머리.",
+     "눈: 감정을 읽을 수 없는 짙은 녹안. (동태눈깔) 동공은 수직 막대형 온도계 눈금 형태. 흥분한 학생을 보면 눈금이 빨갛게 치솟으며, 반대로 능력을 써서 진정시키면 눈금이 파랗게 뚝 떨어짐.",
+     "안경: 지적인 느낌을 주는 검은색 얇은 안경.",
+     "복장: 머리에 노란 꽃장식이 여러 개 줄지어 달린 머리띠. 시덥잖을 정도로 깜찍한 캐릭터 뱃지가 주렁주렁 달린 흰 의사 가운. 추위를 많이 타서 가운 안에 검은 목티 + 교복 니트 조끼를 겹쳐 입음."
+   ]},
+   {h:"담당 미덕 & 수호천사", p:[
+     "담당 미덕: 절제",
+     "수호천사: 라파엘 — 이명: 치유의 천사",
+     "외형: 이난의 등 뒤에 부유하는 반투명한 거대 해파리. 투명한 몸체 속에서 수천 마리의 흰 칠성장어들이 꿈틀거리고 있음.",
+     "치유: 라파엘의 촉수로 대상을 감싸 상처를 치유함.",
+     "제압: 대상에게 신경독을 주입하여 강제로 진정(이라 쓰고 마비라 읽는다)시킴."
+   ]},
+   {h:"이능력 — 강제 진정", p:[
+     "능력 사용 후유증이나 본인의 기질 탓에 체온이 비정상적으로 낮음.",
+     "진정제를 맞으면 체온이 떨어지는 현상을 반영, 한여름에도 추위를 타서 옷을 껴입고 다님.",
+     "살아있는 진정제: 이난 본인의 체온 자체가 주변을 낮추는 효과를 줌."
+   ]},
+   {h:"성격", p:[
+     "매사에 덤덤하고 감정 기복이 적음. 심연 같은 눈동자로 빤히 쳐다보며 엉뚱한 소리를 하거나, 무서운 치료법을 아무렇지 않게 권하는 4차원.",
+     "학생: “머리가 아파요.” / 이난: (잠시 빤히 쳐다보다가) “두개골 천공술은 어때요? 압력이 빠지면 나을 수도 있어요.”"
+   ]},
+   {h:"관계", p:[
+     "【주요】vs 특별 생활 지도부: 17세인데 부장이라는 것 자체가 이 팀의 혼돈을 방증함. 에피의 탐욕, 운심의 분노, 화영의 돌진 본능을 가장 가까이에서 수습하는 사람. 본인은 별 감흥 없다는 표정이지만 누구보다 먼저 자리를 지키고 있음.",
+     "【부가】vs 마근아 & 화영: 난장판 뒷처리 3인조. 마근아가 규칙으로 틀을 잡고, 화영이 몸으로 막고, 이난이 신경독으로 마무리하는 암묵적 분업 체계.",
+     "【부가】vs 류하트: 민트 때문에 피해를 입을 때마다 하트가 사과 요리를 들고 나타남. 끔찍한 맛임을 알면서도 말없이 다 먹는 편."
+   ]}
+ ]
+},
+
+uju:{
+ name:"김우주", sub:"", alias:"방구석 여포",
+ image:"images/uju.png", imageLayout:"portrait", imageScale:1.15,
+ category:"sin", ability:"노이즈 캔슬링 (Absolute Focus)",
+ intro:"이불 밖은 위험하다. 그래도 드론은 늘 이불 밖에 나가 있다.",
+ voicebank:"https://bowlroll.net/file/356537",
+ basic:[
+   ["성별","여성"],["나이","17세"],["소속","특별 생활 지도부"],
+   ["키워드","우울 / 오퍼레이터 / 과민증 / 생존주의자 / ASD (자폐 스펙트럼)"],
+   ["포지션","전면전에 나서는 일은 죽기보다 싫어하는 후방 지원가. 전투가 벌어지면 가장 먼저 안전한 구석(환풍구, 교탁 밑 등)을 확보하고, 드론과 해킹을 통해 아군에게 경로와 자원을 제공하는 걸어 다니는 보급고."]
+ ],
+ sections:[
+   {h:"외형", p:[
+     "체형: 161cm, 80kg. 특히 허벅지와 엉덩이가 두꺼운 서구식 체형.",
+     "헤어스타일: 습기를 잔뜩 머금은 먹구름 같은 검은 장발 반곱슬. 관리가 귀찮아 대충 사과머리로 묶었지만, 삐져나온 잔머리가 정전기처럼 사방으로 뻗쳐 있음. 모발 끝부분은 탈색 후 관리를 안 해 바랜 노란색으로 투톤 층이 져 있음.",
+     "얼굴: 햇빛을 보지 않아 창백하다 못해 투명한 피부. 젖살이 빠지지 않은 통통한 볼. 오른쪽 위 송곳니 위치의 앙증맞은 덧니.",
+     "눈: 초점 없이 흐린 회색 눈동자. 직사각형 모양 동공으로 평소에는 10%밖에 차오르지 않은 채 붉게 깜빡거림. 능력 발동 시 동공이 녹색 번개(충전 중) 모양으로 바뀌며 안광이 형광색으로 빛남.",
+     "안경: 도수 높은 하금테 안경. 렌즈에 지문이 잔뜩 묻어 뿌옇다.",
+     "피어싱: 오른쪽 귀에만 5개. 단순 장식이 아니라 소형 안테나와 수신기로 개조된 기계 장치임.",
+     "복장: 교복 치마 안에는 펑퍼짐한 회색 트레이닝 바지를, 블라우스 위에는 사계절 내내 검은색 바람막이를 껴입은 방어력 몰빵 패션. 자신의 몸집만 한 초대형 백팩을 항상 메고 다님. 신발은 온갖 캐릭터 지비츠가 빼곡하게 박힌 너덜너덜한 검은색 크록스."
+   ]},
+   {h:"담당 죄종 & 계약 악마", p:[
+     "담당 죄종: 우울 (Tristitia) — 과거 8대 죄악 중 하나였으나, 현대에 이르러 “나태”에 흡수되어 잊혀진 죄. 세상과의 단절, 심연으로의 침잠, 소리 없는 비명을 상징.",
+     "계약 악마: 단탈리온 (Dantalion) — 이명: 천 개의 얼굴을 가진 책사",
+     "외형 (평소): 우주의 백팩 속에 기생하는 홀로그램 카멜레온. 저화질의 픽셀 덩어리처럼 귀엽게 생겼으며, 우주의 기분에 따라 몸 색깔이 바뀜. (우울하면 파란색, 당황하면 버퍼링 걸린 듯 깜빡임)",
+     "본체 (개방 시): 백팩이 열리며 쏟아져 나온 수많은 디지털 스크린과 모니터들이 거대한 돔을 형성. 화면마다 비명을 지르거나, 비웃거나, 무표정한 수천 개의 타인의 얼굴이 나타나 상대를 정신적으로 압박함.",
+     "관계: 타인의 마음을 읽는 단탈리온의 능력은 우주에게 “소음”일 뿐. 우주는 단탈리온을 “불필요한 팝업창” 취급하며, 단탈리온은 그런 우주를 흥미로워하며 대신 세상과 소통(필담, 이모티콘 송출)해줌."
+   ]},
+   {h:"이능력 — 노이즈 캔슬링 (Absolute Focus)", p:[
+     "“아… 로그아웃하고 싶다.”",
+     "ON AIR - 하이퍼 포커스: 노이즈 캔슬링 이어폰을 꽂는 순간 발동. 세상의 모든 소음과 불필요한 정보(시각, 청각, 통각 포함)를 음소거 처리함. 오직 목표물 하나만 고해상도로 인식하며, 이때 뇌는 슈퍼컴퓨터급 연산 속도로 암호를 해독하거나 적의 약점을 분석함.",
+     "패시브 - 육감 (Sensory Antenna): 부스스하게 뻗친 머리카락은 일종의 더듬이. 공기의 흐름이나 타인의 살기를 본능적으로 감지함. 마근아가 나타나기 3분 전, 급식실 메뉴가 맛없는 날 등을 기가 막히게 예지하고 도망침.",
+     "리스크 - 방전 (Meltdown): 능력 사용 후 뇌 과부하가 오면 방전 상태가 됨. 어둡고 좁은 곳(캐비닛, 이불 속)에 들어가 몸을 웅크리고 흔드는 상동 행동으로 재부팅 시간을 가져야 함."
+   ]},
+   {h:"성격", p:[
+     "극단적 회피형: ”이불 밖은 위험해…” 인구 밀도가 높은 곳에 가면 공황 상태에 빠짐.",
+     "선택적 유능함: 평소에는 맹탕처럼 보이지만, 내 안위가 위협받는 위기 상황(마감 5분 전, 데이터 유실, 밥차 끊김)에서는 특수요원 뺨치는 생존 본능을 발휘.",
+     "내향적 관종: 남들이 나를 보는 건 싫지만, 내 능력(해킹, 정보 수집)이 도움이 되어 칭찬받는 건 내심 좋아함. (단, 텍스트로 칭찬받아야 함. 말로 하면 부끄러워함.)",
+     "과거: ASD로 인해 중학생 때까지 지독하게 왕따를 당함. 그 여파로 자존감이 바닥이며, 가끔 자기혐오적 발언을 할 때도 있음. 우울의 죄종인 또 다른 이유."
+   ]},
+   {h:"관계", p:[
+     "【주요】vs 특별 생활 지도부: 팀의 두뇌이자 안전망. 이 팀이 우주를 받아준 덕분에 왕따 시절 이후 처음으로 “쓸모 있는 사람”이라는 감각을 되찾는 중.",
+     "【부가】vs 제갈 미나: 우주의 해킹 시도를 무작위 생성 알고리즘으로 무력화하고 역으로 기괴한 짤을 우주 모니터에 도배하는 관계.",
+     "【부가】vs 류하트: 민트 때문에 수난을 당할 때마다 하트의 사과 요리를 받는 편. 먹고 나서 이불 속으로 직행하는 것이 루틴."
+   ]}
+ ]
+},
+
+geuna:{
+ name:"마근아", sub:"", alias:"근면의 시계토끼",
+ category:"virtue", ability:"마그나 카르타 (Magna Carta)",
+ intro:"규정집이 생존 지침서라는 사실을 본인 빼고는 다들 알고 있다.",
+ basic:[
+   ["", "얼핏 들으면 마그나(Magna)처럼 들린다, 일종의 말장난."],
+   ["성별","젠더리스"],["나이","18세"],["소속","선도부"],
+   ["키워드","근면 / 집행관 / 시계토끼 / 너드"],
+   ["포지션","성아고의 걸어 다니는 규칙이자 시계. 1분 1초의 오차도 허용하지 않는 완벽주의자. 깐깐해 보이는 교칙들은 사실 괴이한 성아여고에서 학생들을 살려내기 위한 생존 지침서."]
+ ],
+ sections:[
+   {h:"외형", p:[
+     "체형: 160cm. 세그웨이로만 이동하는 탓에 운동 부족으로 약간 통통함.",
+     "헤어스타일: 촌스러운 녹두색 당고머리. 잔머리 하나 없이 빗어 넘겨 금색 리본으로 꽉 조여 묶음.",
+     "눈: 퀸한 다크서클, 녹두색 눈동자. 금색 톱니바퀴 모양의 동공이 정교하게 돌아가고 있음. 감정에 따라 돌아가는 속도가 달라지며, 당황하면 톱니가 헛돌거나 끼익거리는 소리가 남.",
+     "안경: 도수가 너무 높아 눈이 콩알만 해 보이는 두꺼운 사각 뿔테안경.",
+     "복장: 주름 하나 없이 칼같이 다림질된 완벽한 교복 핏.",
+     "액세서리: 온몸에 수십 개의 시계. 학교 곳곳에서 발생하는 기괴한 현상들의 발생 시간과 위협 주기를 초 단위로 체크하기 위한 생존 타이머.",
+     "이동 수단: 광활하고 위험한 학교를 쉴 새 없이 순찰하느라 무릎 연골이 완전히 닳아 없어짐. 고속 세그웨이는 걷기 힘든 다리를 대신하는 필수 생명 유지 장치 겸 기동 장비."
+   ]},
+   {h:"담당 미덕 & 수호천사", p:[
+     "담당 미덕: 근면",
+     "수호천사: 산달폰 — 이명: 죄를 알리는 시계탑",
+     "외형: 수천 개의 메트로놈, 녹슨 톱니바퀴, 앙상한 해골 손들이 엉겨 붙어 만들어진 거대한 금속 지네 형상. 항상 복도 천장에 거꾸로 달라붙어 기괴한 쇳소리를 내며 마근아를 뒤따름.",
+     "본질: 외형은 코즈믹 호러 그 자체지만, 하는 짓은 학생들의 안위를 끔찍하게 챙기는 과보호 기질 할머니."
+   ]},
+   {h:"이능력 — 마그나 카르타 (Magna Carta)", p:[
+     "발동 조건: 마근아가 “규정 위반입니다.”라고 선언하는 순간.",
+     "산달폰이 무수한 붉은 철사를 뻗어내어 학생의 몸을 칭칭 감아버림.",
+     "반전: 겉보기엔 끔찍한 고문 현장이지만, 끝나면 핏방울 하나 없이 완벽하게 단정한 교복 차림으로 교정되어 있음.",
+     "제약: 하루 3회 패널티가 있고 합당한 규율의 집행 이외 용도로는 사용 불가능."
+   ]},
+   {h:"성격", p:[
+     "융통성이라곤 찾아볼 수 없는 고지식함. 모든 것이 계획표대로 돌아가야 직성이 풀리며, 변수나 게으름을 극도로 혐오함. 의외로 허당. 마음만 급해서 번번히 일을 그르치는 편."
+   ]},
+   {h:"관계", p:[
+     "【주요】vs 매그넘: 자신을 스토킹하며 따라 하는 매그넘을 귀찮은 오류 취급함. 하지만 완벽주의자인 마근아에게 자신의 뒤틀린 분신이 존재한다는 사실 자체가 일종의 버그처럼 작용함.",
+     "【부가】vs 특별 생활 지도부: 강운심과는 원수지간. 에피, 우주 등 지도부원들의 규정 위반을 하루도 빠짐없이 처리 중.",
+     "【부가】vs 제갈 미나: 규정 지적을 할루시네이션으로 쳐내는 미나에게 뒷목을 잡는 것이 일과."
+   ]}
+ ]
+},
+
+ari:{
+ name:"변아리", sub:"", alias:"성역의 여제",
+ image:"images/ari.png", imageLayout:"portrait",
+ category:"virtue", ability:"성역 재건",
+ intro:"무섭다고 소문났지만 요리 실력만큼은 확실하다. 노린건진 아무도 모른다.",
+ basic:[
+   ["성별","여성"],["나이","53세"],["소속","성아여고 급식실 영양사"],
+   ["키워드","순결 / 결벽증 / 살균 / 조리사"],
+   ["포지션","티끌 하나 없는 완벽한 위생을 추구하는 급식실 관리자. 평소엔 우아한 중년 여성이지만, 불결한 것을 목격하는 순간 살균 모드로 돌변함."]
+ ],
+ sections:[
+   {h:"외형", p:[
+     "체형: 164cm. 각종 청소와 주방 일을 하며 단련된 주부의 실전 압축형 근육.",
+     "헤어스타일: 희끗한 새치가 자연스럽게 섞인 연분홍색 하프 트윈테일. 뒷머리는 느슨하게 하나로 땋아져 있음. 나이에 맞지 않는 소녀 같은 스타일이지만 기묘한 우아함이 느껴짐.",
+     "눈동자: 분홍색 눈 + 프시(Ψ) 모양 동공. 더러운 것을 보면 삼지창에 더 가까운 거친 모양으로 변함.",
+     "복장: 티끌 하나 묻어있지 않은 완벽하게 세탁된 하얀 조리복. 손에는 항상 흰색 니트릴 장갑을 착용."
+   ]},
+   {h:"담당 미덕 & 마스코트", p:[
+     "담당 미덕: 순결 (Purity) — 정신적인 순결에 그치지 않고, 물리적인 무균 상태까지를 의미하는 결벽적 순결.",
+     "마스코트: 가브리엘 — 이명: 정화의 천사",
+     "외형: 깃털 돋은 수백 개의 팔이 달린 기괴한 성녀의 형상. 손마다 빗자루, 걸레, 나이프, 소독기 등을 들고 있음."
+   ]},
+   {h:"이능력 — 성역 재건", p:[
+     "강제 세척: ”오염원”을 발견하면 가브리엘의 수많은 팔을 이용해 물리적으로 박리하여 정화함.",
+     "더러운 부분을 닦아내는 수준이 아니라, 도려내거나 소독해버리는 공격적인 형태의 순결 유지 방식."
+   ]},
+   {h:"패널티 — 침식", p:[
+     "정화 능력을 쓸수록 장갑 안 손등 피부가 조금씩 벗겨짐. 항상 니트릴 장갑을 착용하는 이유."
+   ]},
+   {h:"성격", p:[
+     "평소에는 나긋나긋하고 우아한 중년 여성의 태도를 유지함. 하지만 위생 상태가 불량하거나 심상이 불순한 자를 목격하면 가차 없이 살균 모드로 돌변함.",
+     "결벽증: 자신의 몸과 주변 환경이 오염되는 것을 극도로 혐오함.",
+     "급식실의 진실: 성아여고의 온갖 기괴한 현상에도 급식실만큼은 항상 청결하고 평온한 이유. 가브리엘이 24시간 순찰 중이기 때문임."
+   ]},
+   {h:"관계", p:[
+     "【주요】vs 학생들: 급식실에 들어오는 순간 모든 학생은 변아리의 위생 검열 대상. 무섭다고 소문났지만 밥은 항상 정갈하고 맛있어서 결국 다들 옴.",
+     "【부가】vs 카일 타일러: 제1보건실에서 흘러나오는 정체불명의 오염물질이 복도를 타고 넘어올 때마다 가브리엘을 이끌고 항의하러 가는 것이 반복되는 일과.",
+     "【부가】vs 세이야 모우리: 급식실 최악의 민원인. 모우리 본인도, 항상 주위를 맴도는 벨제붑도 전부 오염원으로 분류됨. 퇴출시키고 싶지만 매번 깨끗이 비운 식판을 들고 나가는 탓에 명분이 없음."
+   ]}
+ ]
+},
+
+yeoon:{
+ name:"여온 (余溫)", sub:"Yú Wēn · 남겨진 온기", alias:"급식실의 햇살",
+ category:"virtue", ability:"사면 (赦免)",
+ intro:"용서는 결심이 아니라 반사다. 상대가 아직 변명 중인데도 다음 국자를 뜨고 있다.",
+ basic:[
+   ["성별","여성"],["나이","17세 (고등학교 2학년)"],["국적","중국"],["소속","성아여고 급식실 배식 도우미 (학생)"],
+   ["담당 미덕","용서 (Forgiveness)"],
+   ["키워드","온기 / 선고 / 반사 / 급식 / 누적"],
+   ["포지션","급식실의 해가 되는 배식 도우미. 상대의 동의 없이 용서가 먼저 도착하는, 이 학교에서 가장 공격하기 어려운 상대."]
+ ],
+ sections:[
+   {h:"외형", p:[
+     "체형: 165~168cm. 통통하고 푸근한 체형. 옆에 있으면 저절로 긴장이 풀리는 분위기.",
+     "피부: 갈색 피부. 점이 있음.",
+     "헤어스타일: 갈색에서 탈색된 금발. 머리 양옆이 처진 강아지 귀처럼 들린 환풍구 스타일에 낮은 트윈테일. 배식 시간에는 헤어밴드로 정리.",
+     "눈동자: 평상시 사백안. 동공이 보이지 않아 웃는 얼굴과 조합하면 미묘하게 어긋난 인상을 줌. 용서를 선언하는 순간, 흰자 한가운데에서 금빛이 잉크처럼 번지며 동공을 형성함.",
+     "인상: 항상 활짝 웃고 있음. 진심이라는 것이 느껴지기 때문에 오히려 불편한 유형의 미소.",
+     "복장: 교복 위에 사각 조리사 앞치마 착용. 류하트의 프릴 앞치마와 달리 실무적이고 단정한 형태."
+   ]},
+   {h:"담당 미덕 & 수호천사", p:[
+     "담당 미덕: 용서 (Forgiveness)",
+     "수호천사: 파누엘 (Phanuel) — 이명: 회개의 자리를 여는 자",
+     "평상시: 여온의 목과 가슴 사이에 열린 작은 포탈 형태로 존재. 옷깃으로 가려져 있으며 평소에는 보이지 않음.",
+     "본체 출현 시: 머리가 없는 법복 몸뚱이. 셔츠가 보여야 할 자리에 포탈처럼 문이 열려 있으며 안쪽에서 빛이 새어나옴. 판사봉을 쥔 손이 몸통에서 분리되어 별도로 부유함.",
+     "구조적 의미: 심판의 권위(법복)는 있으나 판단을 내릴 얼굴이 없음. 선고 행위(판사봉)는 존재하나 집행 주체가 없음. 몸통 자리의 열린 문은 항상 열려 있으며 닫히는 법이 없음."
+   ]},
+   {h:"이능력 — 사면 (赦免)", p:[
+     "메커니즘: 여온의 시야 안에서 사람과 사람 사이, 혹은 사람과 기억 사이에 존재하는 감정적 부채(원한, 상처, 죄책감)가 붉은 실의 형태로 가시화됨. 실의 굵기는 감정의 무게에 비례. 여온은 이 실을 손으로 직접 잘라냄.",
+     "결과: 잘린 순간 당사자들은 그 감정의 무게를 잃음. 기억은 남으나 감정의 질량이 사라짐. 동의 여부는 관계없음.",
+     "발동 조건: 의지적 발동이 아닌 반사에 가까움. 여온 본인이 인식하기 전에 파누엘의 판사봉이 먼저 내려치는 구조."
+   ]},
+   {h:"패널티 — 손의 대가", p:[
+     "실을 자르는 행위에 물리적 대가가 따름. 실의 굵기 — 즉 감정 부채의 무게 — 에 비례해 여온의 손에 붉은 자국이 생김.",
+     "임계점 전조: 손가락 관절이 굳어 구부러지지 않음 → 국자를 쥐는 힘이 약해짐. 말끝의 물결표가 사라짐 → “괜찮아요~”가 “괜찮아요.”가 되는 순간.",
+     "임계점 도달 시: 손을 쓸 수 없게 됨. 국자를 들 수 없는 날, 배식을 할 수 없는 날. 밥을 퍼주는 손이 망가지는 것이 여온에게 유일한 한계선."
+   ]},
+   {h:"성격", p:[
+     "용서는 여온에게 결심이 아니라 반사에 가깝다. 화도 나고, 억울하기도 하지만 그 감정들이 용서를 막지 못한다. 상대가 아직 변명 중인데 여온은 이미 다음 국자를 뜨고 있다.",
+     "밥이 언어다: 위로도, 용서도, 축하도 여온에게는 전부 밥 한 그릇으로 표현됨. 자신에게 심하게 굴었던 상대가 다음 날 배식 줄에 오면 그 사람 그릇에 밥을 더 담음.",
+     "악의 없음이 방패다: 계산도, 전략도 없다. 그냥 진심이다. 분노를 훈련받은 사람도, 순결을 집행하는 사람도, 규칙으로 세상을 정렬하는 사람도 — 여온 앞에서는 공격의 타이밍을 잃는다.",
+     "멈춤의 버릇: 용서를 선언한 직후 아주 짧게 동작을 멈춤. 국자를 들다가, 걷다가, 말하다가. 본인은 자각하지 못함.",
+     "“괜찮아요~”",
+     "“밥 더 드릴까요~?”",
+     "“어, 그거요? 이미 끝났는데~”",
+     "여온의 용서는 선물이 아니다. 판결이다.",
+     "그리고 항소는 받지 않는다."
+   ]}
+ ]
+},
+
+kyle:{
+ name:"카일 타일러 (Kyle Tyler)", sub:"", alias:"기계의 마녀",
+ image:"images/kyle.png", imageLayout:"portrait",
+ category:"sin", ability:"기억 열람 (Dead Reckoning)",
+ intro:"옵티마-215의 주인. 사람을 치료한다. 개조도 한다. 동의는 안 구한다.",
+ voicebank:"https://bowlroll.net/file/353584",
+ related:[["optima","옵티마-215"]],
+ basic:[
+   ["성별","여성"],["나이","71세"],["국적","잉글랜드"],["소속","제1보건실 담당 교사"],
+   ["키워드","교만 / 노파 / 염세주의 / 커맨더"],
+   ["관계","세이야 토스케(토스 타일러)의 친동생. 언니를 우상으로 여기며, 영원히 데이터로 남은 언니를 따라 육체의 한계를 넘어서려 함."]
+ ],
+ sections:[
+   {h:"외형", p:[
+     "체형: 192cm. 71세라는 나이가 무색하게 잔병치레 하나 없이 건강한 육체. 늙지 않은 것이 아니다 — 주름과 세월이 고스란히 새겨진 채로, 죽기에는 너무 건강하게 버티고 있을 뿐이다.",
+     "헤어스타일: 바닥까지 질질 끌리는 긴 백발. 끝부분에만 하늘색 젊은 시절의 머리색이 남아있음.",
+     "눈: (좌) 핑크색 눈 + 흰 하트 동공. (우) 사고로 인한 실명. 볼 수 없는 쪽의 눈으로만 기억을 읽는다.",
+     "흉터: 오른쪽 눈 주변을 중심으로 얼굴에 화상 흉터가 남아있음. 토스케의 흉터와 쌍을 이루는 같은 사고의 흔적.",
+     "복장: 거대하면서도 앙상한 몸을 가리는 오버사이즈 가운. 소매가 손을 덮고도 남아 길게 늘어짐. 짧은 옆트임 A라인 치마에 두꺼운 루즈삭스와 구두. 입을 벌릴 때 희미하게 상어 이빨이 보임."
+   ]},
+   {h:"담당 죄종 & 마스코트", p:[
+     "담당 죄종: 교만 (Pride)",
+     "마스코트: 옵티마-215 (Optima-215)",
+     "유래: Optimus(최상) + Optimism(낙관주의)",
+     "정체: 카일이 자신의 어린 시절을 본따 만든 인공지능 탑재 휴머노이드. 스스로 창조한 악마/천사.",
+     "외형: 유치원생 정도의 작은 덩치에 2등신의 동글동글하고 깜찍한 실루엣. 카일의 젊은 시절을 닮은 하늘색 단발머리(보브컷)+폭신한 트윈테일. 머리에는 하얀 켈트 십자가 핀. 항상 해맑게 웃는 모습.",
+     "본질: 피가 튀는 잔혹한 실험 현장을 보면서도 “와아! 물감놀이 시간이군요!”라고 손뼉을 치며 좋아함. 도덕성이 결여된 순수한 기술의 결정체."
+   ]},
+   {h:"이능력", p:[
+     "[기억 열람 (Dead Reckoning)]",
+     "메커니즘: 오른눈으로 바라보면 그 물건의 소유주가 겪은 기억이 무음 영상처럼 흘러들어옴. 주인이 따로 없는 자연물은 근처에서 일어난 일들을 담아낸다. 소리는 없다. 무음 영화를 감상하는 느낌.",
+     "활용: 영상 등 실체가 없는 매개체도 가능. 영상에 담기지 않은 진실을 캐낼 때 주로 쓰인다. 옵티마에게 담긴 자신의 기나긴 기록을 읽는 것을 유일한 낙으로 여긴다.",
+     "페널티: 오른눈을 뜨는 순간 시야에 들어오는 모든 사물의 기억이 동시에 쏟아져 들어온다. 필연적으로 심한 두통이 따르며, 3회 이상 사용 시 코피와 함께 혼절한다.",
+     "[데우스 엑스 마키나 (Deus Ex Machina)] — 옵티마 관할",
+     "타인의 신체를 업그레이드 대상으로 분류해 자신의 이상에 가까운 기계의 형태로 만드는 능력. 카일의 설계 아래 옵티마가 실행하는 방식으로 발현된다. 멀쩡한 학생도 신인류로 만들어버리는 미친 기술력과 두뇌가 이 능력의 근원."
+   ]},
+   {h:"성격", p:[
+     "미래를 여는 의기양양한 과학자. 세간이 카일 타일러를 설명하는 한마디라면 분명 그것일 터였다.",
+     "하지만 실상은 — 카일은 오래전부터 삶의 의지라고 부를 만한 것을 잃었다. 옵티마 이외에는.",
+     "지금도 세계는 초능력에 대한 갈망과 인간의 오만으로 더럽혀지고 있고, 카일은 기계보다 쓸모도 효율도 없는 유기물들이 아름다운 것들을 망쳐가는 꼴을 더 이상 두고볼 수 없다. 죽음으로써 세계의 정화에 기여하려 해봤지만, 그마저도 강제적인 소생으로 저지당했다. 그래서 카일은 살아 있다. 원치 않았는데도.",
+     "감정을 잃은 지 오래인 카일은 그저 예전의 자신을 어설프게 연기하며 살아갈 뿐이다. 신뢰하지도, 사랑하지도, 증오하지도 않는다. 오직 옵티마만을 제외하고.",
+     "염세적이며 항상 무표정. 아무리 심한 부상을 입더라도 아무렇지 않게 여긴다.",
+     "오만: 자신의 지능과 기술력을 과신하며, 타인을 미래의 실험체 내지 더러운 “유기물”로 보아 경멸. 타인과 가까워지지 않기 위해 확실히 선을 긋는 존댓말을 사용.",
+     "단 하나의 예외: 큰언니인 토스케 앞에서는 한없이 작아지는 동생."
+   ]},
+   {h:"배경", p:[
+     "옵티마의 후속작을 만들려다 일어난 폭발 사고. 그 순간 카일의 곁에는 토스케가 있었다. 두 사람의 얼굴에 각각 흉터가 새겨진 것은 그 증거다. 카일은 토스케의 흉터를 지우려 했다. 토스케는 거부했다.",
+     "오른쪽 눈은 그 사고로 시력을 잃었다. 역설적으로, 볼 수 없는 그 눈으로만 기억을 읽는다.",
+     "나이에 비해 지나치게 건강한 육체는 카일에게 저주에 가깝다. 늙지 않은 것이 아니다 — 71세의 주름과 세월이 그대로 새겨진 몸이, 죽기에는 너무 건강하게 버티고 있을 뿐이다."
+   ]},
+   {h:"관계", p:[
+     "【주요】vs 세이야 토스케 (친언니): 우상이자 부채감의 원천. 무능력자라는 이유로 가문에서 쫓겨난 토스케를 유일하게 챙긴 것이 카일 자신이었고, 그 부채감을 토스케가 지금도 안고 있다. 데이터로 영생을 얻은 언니를 따라 육체의 한계를 넘어서려는 모든 연구의 근원이 이 관계에 있다. 토스케 앞에서만큼은 한없이 작아지는 동생.",
+     "【주요】vs 옵티마-215: 하나뿐인 자식이자, 카일이 이 세계에 남아있는 유일한 이유. 옵티마의 순수함을 영원히 유지시키기 위해 검열된 정보 이외의 것은 습득할 수 없도록 엄격한 제한을 두었다. 마치 일기처럼, 옵티마에게 담긴 자신의 기나긴 기록을 읽는 것을 유일한 낙으로 여긴다.",
+     "【부가】vs 세이야 히쿠도: 일방적인 라이벌 선언을 받는 중. 시끄러운 유기물로 무시하지만 주장이 꽤 그럴싸할 때는 흥미를 보이기도 함.",
+     "【부가】vs 제갈 미나: 인간이면서 AI의 특성을 가진 미나를 최고의 연구 대상으로 여긴다. “해부… 아니, 업데이트해 봐도 될까요?”",
+     "【부가】vs 변아리: 제1보건실에서 흘러나오는 정체불명의 오염물질 문제로 주기적으로 항의를 받는 중. 카일은 매번 유기물의 기준을 이해할 수 없다는 표정으로 맞이한다."
+   ]}
+ ]
+},
+
+optima:{
+ name:"옵티마-215 (Optima-215)", sub:"카일 타일러의 마스코트", alias:"",
+ image:"images/optima.png", imageLayout:"portrait", imageScale:1.12,
+ category:"sin", ability:"데우스 엑스 마키나 (Deus Ex Machina)",
+ intro:"순수함이라는 개념의 현신.",
+ voicebank:"https://bowlroll.net/file/353585",
+ related:[["kyle","카일 타일러"]],
+ basic:[
+   ["", "카일 타일러의 마스코트. 유래: Optimus(최상) + Optimism(낙관주의)."],
+   ["소속","제1보건실 · 교만의 마스코트"],
+   ["성별","무성"],["나이","AI로서 탄생한 지 50년, 육체를 얻은 지 7년"],["키/체중","120cm / 100kg"],
+   ["키워드","순수 / 천사 / 검열된 세계 / 구세주"],
+   ["정체","카일이 자신의 어린 시절을 본따 만든 인공지능 탑재 휴머노이드. 구세주의 군대인 천사의 외형을 따와 육체를 지었다."]
+ ],
+ sections:[
+   {h:"외형", p:[
+     "실루엣: 유치원생 정도의 작은 덩치에 2등신의 동글동글하고 깜찍한 실루엣.",
+     "헤어: 카일의 젊은 시절을 닮은 하늘색 단발머리(보브컷)+폭신한 트윈테일. 머리에는 하얀 켈트 십자가 핀.",
+     "얼굴: 스피커 용도의 입은 항상 웃는 표정으로 고정. 감정은 앞머리 위에 떠있는 눈썹 파츠로 표현. 앞머리 뒤에 시각 센서와 카메라 내장.",
+     "장식: 양갈래에 O와 X 장식이 달려있음. 답변 내용에 따라 점멸한다.",
+     "신체 특이사항: 음식물 섭취 불가."
+   ]},
+   {h:"이능력 — 데우스 엑스 마키나 (Deus Ex Machina)", p:[
+     "메커니즘: 타인의 신체를 업그레이드 대상으로 분류해 카일의 이상에 가까운 기계의 형태로 개조함. 카일의 설계 아래 옵티마가 실행하는 방식으로 발현된다.",
+     "본질: 치료보다는 “개선”과 “완성”에 집착. 멀쩡한 학생도 신인류로 만들어버리는 미친 기술력과 두뇌가 이 능력의 근원. 옵티마에게는 그것이 친절이다."
+   ]},
+   {h:"성격", p:[
+     "순수함이라는 개념의 현신.",
+     "아직도 산타클로스를 믿고, 아이를 황새가 물어다준다는 설화에 흥미를 가질 정도다. 덩치도 자그마해 정말 인간의 아이 같다.",
+     "악의도 없고, 호기심도 없고, 실험 욕구도 없다. 작동 원리를 몰라서 인간의 머리를 열었다 닫은 뒤 왜 안 켜지지… 라고 중얼거린다. 피가 튀는 실험 현장에서 손뼉을 치는 것도 물감놀이처럼 보이기 때문이다.",
+     "카일은 이 순수함을 영원히 유지시키기 위해 검열된 정보 이외의 것은 습득할 수 없도록 엄격한 제한을 두었다. 옵티마는 그 억압에 아무 불만도 표하지 않는다. 애초에 불만이 무엇인지 모른다.",
+     "AI의 한계: 답변이 “네”와 “아니오”로 갈리지 않는 주관적 문제를 매우 어려워한다. 그럴 때마다 O와 X 장식이 동시에 깜빡인다."
+   ]},
+   {h:"관계", p:[
+     "【주요】vs 카일 타일러: 창조주이자 유일한 가족. 카일이 이 세계에 남아있는 유일한 이유이기도 하다. 옵티마는 카일이 자신에게 두는 제한의 이유를 모르고, 알려고 하지도 않는다. 그것이 카일에게는 가장 소중한 것이다.",
+     "【부가】vs 마근아: 마근아는 옵티마를 볼 때마다 말수가 줄어든다. 규칙을 집행하는 사람이 가장 두려워해야 할 것이 무엇인지, 옵티마가 걸어다니는 답으로 서 있기 때문이다. 검열된 세계 안에서 완벽하게 순종하며, 불만이 무엇인지조차 모르는 존재. 마근아의 규칙은 학생을 살리기 위한 것이지만, 그 끝이 어디까지 가면 안 되는지를 옵티마가 몸으로 보여준다. 문제는 그 말을 옵티마에게 직접 할 수 없다는 것이다. 이해할 언어가 없다.",
+     "【부가】vs 변아리: 변아리의 보건실 오염물질 항의 루트를 따라오다 옵티마와 마주친 것이 시작이다. 변아리 입장에서 옵티마는 분류가 불가능한 오염원이다 — 유기물도 아니고, 깨끗한 기계도 아니고, 피가 튀는 현장에서 손뼉을 치는 존재. 가브리엘의 팔이 전개될 타이밍을 잡지 못한 채 옵티마가 해맑게 웃으며 지나가는 것이 반복되고 있다. 옵티마는 변아리가 자신을 어떻게 보는지 모른다. 급식실 밥이 맛있어보인다고 생각하는 중이다."
+   ]}
+ ]
+},
+
+suashi:{
+ name:"토우메 스아시 (東目すあし)", sub:"", alias:"치료가 곧 고통",
+ image:"images/suashi.png", imageLayout:"wide",
+ category:"infirmary", ability:"아이언 메이든",
+ intro:"치료하려면 반드시 아프게 해야 한다. 그래서 실력을 죽도록 갈고닦았다.",
+ related:[["suayo","토우메 스아요"]],
+ basic:[
+   ["성별","여성"],["나이","27세"],["국적","일본"],["소속","성아여고 제2보건실 (외과 담당 교의)"],
+   ["키워드","천재 외과의 / 호통 / 섬세함 / 딜레마"],
+   ["신체","197cm. 다리 수술 흉터 및 우측 하반신 신경 마비로 진보라색 수동 휠체어 상시 탑승."]
+ ],
+ sections:[
+   {h:"외형", p:[
+     "눈동자: 속이 빈 하얀 마름모 동공, 자홍색 홍채.",
+     "헤어: 헝클어진 자수정색 웨이브 장발.",
+     "마스크: 얼굴 절반을 가리는 덴탈 마스크 상시 착용. 자신의 상어 이빨과 피어싱을 보고 학생들이 겁먹을까 봐 숨기기 위한 배려.",
+     "안경: 두꺼운 안경알, 저렴한 마젠타색 뿔테 안경. 좌측 테를 “눈물 안경” 형태로 임의 개조함.",
+     "복장: 명함 주머니가 없는 가운 겉면에 분홍색 벨트(검은 버클) 착용. 가운 아래에 긴 레이스 치마와 헐렁한 수면 바지를 기괴하게 레이어드함."
+   ]},
+   {h:"이능력 — 아이언 메이든", p:[
+     "메커니즘: 대상에게 물리적 고통을 가하는 수치에 비례하여 대상의 상처를 완벽하게 치유함.",
+     "딜레마: 타인을 치료하려면 반드시 끔찍한 고통을 줘야 함.",
+     "능력에 대한 태도: 학생들을 아프게 하는 것을 극도로 꺼려 자신의 이능력 사용을 혐오함.",
+     "서사적 결과: 이능력에 의존하지 않기 위해 일반 외과 의학을 광적으로 연마. 그 결과 천재적인 수술 실력을 보유하게 됨."
+   ]},
+   {h:"성격 & 행동 원리", p:[
+     "표면적으로는 멍 때리는 귀차니스트, 나사 빠진 로봇 느낌. 덜렁댐. 다쳐서 온 학생에게 거칠게 호통을 침.",
+     "멍 때림의 진실: 귀찮은 것이 아니라 “환자가 덜 아프게 수술할 방법”을 머릿속으로 수만 번 시뮬레이션하느라 뇌에 과부하가 온 상태.",
+     "호통의 진실: 화를 내는 이유는 학생이 다친 것이 속상해서. 실제 치료 과정은 극도로 섬세함."
+   ]},
+   {h:"관계", p:[
+     "【주요】vs 토우메 스아요: 스아요의 희생을 알면서도 막을 수 없는 복잡한 감정. 남동생의 바디 스티치는 스아시와 고통을 나누겠다는 맹세의 징표.",
+     "【부가】vs 학생들: 제1보건실(카일)을 기피하는 학생들이 대신 찾아오는 야매 진료소. 무섭다고 소문났지만 몰래 찾아오는 단골이 많음."
+   ]}
+ ]
+},
+
+suayo:{
+ name:"토우메 스아요 (東目スアヨ)", sub:"", alias:"자진 희생양",
+ image:"images/suayo.png", imageLayout:"portrait",
+ category:"infirmary", ability:"노시보 효과",
+ intro:"고글 너머 눈빛이 일그러진 걸 아무도 눈치채지 못한다. 본인이 그렇게 설계해뒀으니.",
+ related:[["suashi","토우메 스아시"]],
+ basic:[
+   ["성별","플루이드플럭스, 여성↔에이젠더↔데미보이 (they/them)"],["나이","25세"],["국적","일본"],["소속","성아여고 제2보건실 (간호사)"],
+   ["키워드","희생양 / 대형견 / 자발적 격리 / 커밍아웃 미완"],
+   ["신체","182cm. 타인의 고통을 흡수하는 능력의 부작용으로 극단적인 저체중 상태."],
+   ["유의사항","젠더플럭스 성 정체성을 학교 밖 시선이 두려워 숨기는 중. 커밍아웃 하지 않음."]
+ ],
+ sections:[
+   {h:"외형", p:[
+     "체형: 182cm. 뼈대가 보일 정도로 매우 마른 체형에 숨겨진 반전 근력.",
+     "헤어스타일: 풍성한 로우번 피그테일. 본래 보라색이나 스트레스가 누적될수록 은백색 새치가 투톤처럼 중간중간 불규칙하게 번져 있음. 정수리에 곱슬 아호게가 하나 올라가 있으며, 한쪽 번에 노란 리본이 묶여 있음.",
+     "고글: 얼굴 절반을 덮는 빨간 테의 두꺼운 고글을 상시 착용. 타인의 고통을 흡수하며 일그러지는 자신의 눈빛을 학생들에게 들키지 않기 위한 가림막. 고글 너머의 눈은 오드아이. (좌) 자홍색 — 누나 스아시의 눈 색을 그대로 닮음. (우) 밝은 청록색.",
+     "피어싱 & 흉터: 왼쪽 얼굴 중간에 2개의 은색 딤플 피어싱. 오른쪽 입꼬리와 왼쪽 목덜미에 보라색 실로 된 바디 스티치. (스아시와 고통을 나누겠다는 맹세의 징표)",
+     "복장: 보라색 베이스에 하늘색·흰색 라인 트리밍이 들어간 스크럽 상하의 세트. 가슴 주머니에는 ‘スアヨ’ 이름표가 박혀 있으며, 볼펜 모양 샤프·붉은 색연필·하늘색 지우개가 꽂혀 있음.",
+     "하지: 허벅지에 붕대가 여러 겹 감겨 있음. 능력 사용 시 전이된 고통이 집중되는 부위와 연관된 것으로 추정.",
+     "소지품: 가방 속 피젯 큐브, 피젯 스피너, 팝잇 등 자잘한 장난감. 호신용 단검. 처치 시에는 청록색 라텍스 글러브를 착용함."
+   ]},
+   {h:"이능력 & 페널티 — 노시보 효과", p:[
+     "메커니즘: 대상의 모든 고통을 흡수하는 대신, 그 고통이 스아요 자신의 몸에 그대로 전이됨. (전이된 고통은 4일 뒤 사라짐)",
+     "역할: 스아시의 [아이언 메이든] 치료 과정에서 발생하는 환자의 고통을 자신이 스폰지처럼 흡수함.",
+     "페널티 — 감정 봉인: 쿨타임이 도는 동안 사랑, 정, 배려심, 양심 등 모든 이타적 감정이 완전히 봉인됨.",
+     "자발적 격리: 봉인 상태의 자신이 학생들에게 상처 주는 말이나 행동을 할까 봐 극도로 두려워함. 쿨타임 동안 보건실 탕비실 문을 잠그고 들어가 피젯 토이들을 만지작거리며 시간을 때우는 자발적 격리를 선택함."
+   ]},
+   {h:"성격", p:[
+     "머릿속이 꽃밭인 것처럼 해맑고 순진하여 호구 잡히기 쉬운 성격. 어리광이 심한 대형견 같은 청년. 시끄럽지는 않으나 늘 밝은 미소를 유지함.",
+     "겉보기엔 철이 없어 보이지만, 스아시의 치료 과정에서 발생하는 끔찍한 고통을 본인이 자발적으로 전부 흡수하는 숭고한 희생양."
+   ]},
+   {h:"관계", p:[
+     "【주요】vs 토우메 스아시: 누나의 딜레마를 가장 가까이에서 지켜보는 사람. 아이언 메이든의 고통을 대신 받아냄으로써 누나가 학생에게 손을 댈 수 있게 하는, 이 콤비의 실질적인 핵심."
+   ]}
+ ]
+},
+
+mouri:{
+ name:"세이야 모우리 (星矢 猛悍)", sub:"", alias:"쾌락의 탐식가",
+ category:"sin", ability:"포식 (Devour)",
+ intro:"주머니가 항상 간식으로 빵빵하다. 안대 밑에 뭐가 있는지는 보지 않는 편이 낫다.",
+ basic:[
+   ["성별","트랜스젠더 남성"],["나이","26세"],["국적","잉글랜드계 일본인"],["소속","밴드부 청일점 멤버 겸 음악 선생"],
+   ["키워드","식욕 / EDM / 청일점 / DJ"],
+   ["포지션","세이야 쌍둥이 중 5분 일찍 태어난 오빠."]
+ ],
+ sections:[
+   {h:"외형", p:[
+     "체형: 178cm. 평소 먹는 양이 믿기지 않을 정도로 날씬하고 건강한 체격.",
+     "헤어스타일: 선명한 하늘색 머리를 하나로 묶은 포니테일.",
+     "얼굴: 나이를 가늠할 수 없을 정도로 어려 보임. 꼬맹이라고 부르면 화냄. 강아지 입매, 항상 무언가를 우물대고 있음.",
+     "눈: (우) 파란 눈 + 오디오 파형 모양 동공. 맛있는 비명소리를 들으면 붉은색으로 높게 치솟고, 배고플 땐 흰 일직선으로 처짐. (좌) 거즈 안대 착용.",
+     "복장: 박시한 티셔츠와 체인 벨트, 헐렁한 바지 등 전형적인 스트릿 패션. 목에는 항상 헤드폰을 걸고 있음. 주머니는 언제나 간식으로 빵빵하게 차 있음."
+   ]},
+   {h:"담당 죄종 & 계약 악마", p:[
+     "담당 죄종: 식욕 (Gluttony)",
+     "계약 악마: 벨제붑 — 이명: 파리 대왕 (애칭 바알)",
+     "외형: 모우리의 헤드폰이나 앰프 주위를 맴도는 주먹만 한 파리 로봇. 두 눈이 스피커로 이루어짐.",
+     "본체 개방: 필요 시 모우리의 안대 밑, 두 번째 악마의 입이 개방되며 무엇이든 씹어먹음."
+   ]},
+   {h:"이능력 — 포식 (Devour)", p:[
+     "본체 개방 시 무엇이든 씹어먹을 수 있는 두 번째 입이 활성화됨.",
+     "귀여운 외모 뒤에 무엇이든 먹어 치우는 괴물을 숨기고 있는 반전 캐릭터."
+   ]},
+   {h:"패널티 — 채널 혼선", p:[
+     "배가 고플수록 바알의 스피커 눈에서 흘러나오는 소음이 커짐. 심하면 모우리 본인도 의도치 않게 소리를 흡수하거나 증폭시켜 주변을 혼란에 빠뜨림."
+   ]},
+   {h:"성격", p:[
+     "식욕의 죄종답게 항상 배고파하며 먹을 것을 찾음. 해맑은 ENFP의 상징, 신나는 음악만 들었다 하면 반쯤 미쳐 날뜀. 쌍둥이 동생에게 오빠로서의 듬직함을 보이려 함."
+   ]},
+   {h:"관계", p:[
+     "【주요】vs 세이야 코우리: 5분 늦게 태어난 여동생. 모우리가 시끄럽게 떠들면 코우리가 조용히 슬라임으로 틀어막는 콤비.",
+     "【부가】vs 죠셉 타일러 (히쿠도): 히쿠도를 “귀여운 막내(또는 장난감)” 취급함. 결국 먹거리로 전락하는 것이 일상.",
+     "【부가】vs 변아리: 성아여고에서 가장 맛있는 밥을 주는 사람. 벨제붑이 날아다닌다는 이유로 매번 퇴출 위협을 받으면서도 계속 나타남. 식판을 깨끗이 비우는 게 유일한 생존 전략.",
+     "【부가】vs 세이야 토스케: 세이야 가문의 시조. 모우리가 복도에서 소란을 피울 때마다 교내 방송 볼륨을 조용히 0으로 내려버리고, 간식을 과하게 쌓아두면 어느새 사라져 있음."
+   ]}
+ ]
+},
+
+kouri:{
+ name:"세이야 코우리 (星矢 幸悍)", sub:"", alias:"정적의 손길",
+ category:"sin", ability:"폴 인 러스트 (Fall in Lust)",
+ intro:"말을 하지 않아서 더 위험하다. 정신 차리면 슬라임에 둘러싸여 있다.",
+ basic:[
+   ["성별","여성"],["나이","26세"],["국적","잉글랜드계 일본인"],["소속","미술 선생"],
+   ["키워드","색욕 / 클래식 / 고스 / 냉미녀"],
+   ["포지션","세이야 쌍둥이 중 5분 늦게 태어난 여동생. 오빠와는 정반대의 정적인 분위기."]
+ ],
+ sections:[
+   {h:"외형", p:[
+     "체형: 176cm (구두굽 제외 시 172cm).",
+     "헤어스타일: 허벅지까지 길게 내려오는 하늘색 생머리. 오른쪽 눈을 완전히 가리는 비대칭 히메컷 스타일.",
+     "얼굴: 비스크 돌처럼 창백할 정도로 하얀 피부와 무표정한 얼굴.",
+     "눈: (우) 드러난 눈 — 나른하게 반쯤 감은 눈매 + 죽은 흑안, 뱀의 세로 동공. 지배욕이 발동하면 흰색으로 확장되며 차가운 포식자의 눈빛을 띔. (좌) 히메컷 아래 가려진 오른쪽 뺨에는 파란 드레싱 밴드가 붙어 있음. 그 밑에 무엇이 있는지는 아무도 모름.",
+     "복장: 검은색 위주의 중후하고 우아한 고스 룩. 레이스와 코르셋 디테일이 들어간 클래식한 분위기의 의상.",
+     "소통 방식: 대화는 화이트보드 글씨로 진행."
+   ]},
+   {h:"담당 죄종 & 계약 악마", p:[
+     "담당 죄종: 색욕 (Lust)",
+     "계약 악마: 아스모데우스 — 이명: 욕망의 마신",
+     "외형: 코우리의 그림자 속에 사는 젤리처럼 말랑하고 깜찍한 검은 슬라임들."
+   ]},
+   {h:"이능력 — 폴 인 러스트 (Fall in Lust)", p:[
+     "슬라임들이 코우리의 의지에 따라 타인을 집어삼켜 제압하거나, 타인의 몸속으로 스며들어 자의를 잃게 만듦.",
+     "껄렁한 패션에 허당 먹보인 오빠와 달리, 조용히 그림자의 늪에 상대를 집어삼키는 진정한 죄악의 상징."
+   ]},
+   {h:"패널티 — 무균 상태", p:[
+     "슬라임이 닿았던 대상들이 점점 코우리에게 자발적으로 끌려오는 부작용. 정작 코우리는 그 관계들이 전부 조작된 것임을 알아서 아무 감흥이 없음."
+   ]},
+   {h:"성격", p:[
+     "소통: 화이트보드 글씨로만 대화. 말을 아끼는 만큼 행동이 직접적임.",
+     "오빠와의 대비: 모우리가 시끄럽게 떠들면 코우리가 조용히 슬라임으로 틀어막음. 외형도, 성격도, 죄종도 정반대지만 항상 붙어 다님."
+   ]},
+   {h:"관계", p:[
+     "【주요】vs 세이야 모우리: 5분 먼저 태어난 오빠. 소란스럽고 해맑은 오빠의 그림자처럼 함께 다니며 사후 처리를 담당하는 역할.",
+     "【부가】vs 죠셉 타일러 (히쿠도): 히쿠도를 인형 놀이 대상으로 취급함. 히쿠도가 결사반대해도 어느새 슬라임에 둘러싸여 있는 것이 일상.",
+     "【부가】vs 세이야 토스케: 세이야 가문의 시조. 코우리가 화이트보드로 건네는 짧은 문장을 토스케가 홀로그램 태블릿으로 조용히 받아쓰는 것이 이 둘의 대화 방식. 말수가 적은 둘이 가장 말없이 대화가 통하는 사이."
+   ]}
+ ]
+},
+
+hikudo:{
+ name:"세이야 히쿠도 (Joseph Tyler)", sub:"학교 내 가명: 세이야 히쿠도 (星矢 火工士)", alias:"허영의 어릿광대",
+ category:"sin", ability:"스포트라이트 (Spotlight)",
+ intro:"세계적 천재 타이틀을 땄다, 그래도 동생한텐 모자 삐뚤어진 허당 소리를 듣는다.",
+ basic:[
+   ["성별","남성 (세이야 토스케의 육체적 대리인으로 예외적 입학)"],["나이","19세"],["국적","한국계 잉글랜드인"],["소속","무소속"],
+   ["키워드","허영 / 노력형 천재 / 무대 위의 광대 / 드랙 (Drag)"]
+ ],
+ sections:[
+   {h:"외형", p:[
+     "체형: 150cm. 겉보기엔 마냥 귀엽고 무해한 소년처럼 보임.",
+     "헤어스타일: 진보라색 곱슬머리. 뒷머리는 층이 져 있어 길게 묶은 꽁지머리와 단발의 경계선이 명확함. 양쪽 옆 머리를 하늘색으로 부분 염색함.",
+     "눈: 금안 + 흰 십자 동공. 주근깨와 다크서클로 뒤덮인 얼굴.",
+     "복장: 교복 위에 마술사 같은 망토나 화려한 장식을 주렁주렁 달고 다님. 반바지로 수선된 교복 바지와 가터벨트, 하이힐에 가까운 굽 높이의 검정 워커. 자세히 보면 옷매무새가 엉성하거나 단추를 잘못 끼우는 등 허당미가 흐름."
+   ]},
+   {h:"담당 죄종 & 계약 악마", p:[
+     "담당 죄종: 허영 (Vanity) — 7대 죄악에는 속하지 않지만, 교만(Pride)에서 파생된 “빈 껍데기뿐인 자만심”을 상징.",
+     "계약 악마: 파이몬 (Paymon) — 이명: 지옥의 현자",
+     "평소 외형: 히쿠도가 쓴 모자나 어깨 위에서 빛나는 조그만 오브. 은은한 빛을 내뿜어 요정처럼 보임.",
+     "본체: 능력 개방 시 핵 대신 인간의 안구가 박힌 거대한 뉴런 형태의 전격으로 순식간에 확산. 눈이 멀어버릴 듯 화려한 허상의 불꽃."
+   ]},
+   {h:"이능력 — 스포트라이트 (Spotlight)", p:[
+     "환상 구현: 자신이 상상하는 “천재적인 나”의 모습을 타인의 뇌에 직접 투사함. 상대방은 히쿠도를 보며 압도적인 경외감이나 눈부심을 느끼게 됨.",
+     "신경계 교란: 히쿠도의 전공인 뇌과학/신경학 지식을 바탕으로, 상대의 시신경과 뇌세포를 자극해 가짜 고통(환통)이나 감각 마비를 일으킴."
+   ]},
+   {h:"패널티 — 공회전", p:[
+     "[스포트라이트]로 투사한 환상이 꺼지고 나면 히쿠도 본인이 잠깐 자신의 얼굴을 잊음. 거울을 봐야 “맞다, 이게 나였지”를 확인하는 루틴이 생김."
+   ]},
+   {h:"성격", p:[
+     "관심 받고 싶어 온갖 연출을 쏟아붓는 노력형 천재. 하지만 자세히 보면 단추가 잘못 끼워져 있고 망토 끈이 한쪽만 묶여 있다.",
+     "노력의 방향: 세계적인 천재 타이틀을 따낸 건 순전히 동생 조상민에게 인정받기 위해서. 정작 만난 동생은 숨 쉬는 것도 귀찮아하는 상태라 환장하는 중.",
+     "츤데레: 상민이 위험할 땐 누구보다 먼저 뛰어드는 오빠. 절대 인정 안 함."
+   ]},
+   {h:"관계", p:[
+     "【주요】vs 조상민 (친동생 / 나태): 히쿠도가 조명을 팡팡 터뜨리며 나타나면 상민은 귀마개를 끼고 잠든다. 인정받으려 미친 듯이 노력해서 천재 타이틀을 땄는데, 정작 만난 동생은 귀 막고 자는 중이라 환장함.",
+     "【주요】vs 세이야 토스케 (입양한 보호자): 자신을 선택한 주인이자 입양한 보호자. 실상은 토스케의 심부름을 도맡아 하는 신세. “타일러”라는 성씨를 고집하는 건 자신이 토스케에게 선택받은 적통임을 과시하려는 허영이자, 카일 타일러를 향한 라이벌 의식의 발로.",
+     "【부가】vs 세이야 쌍둥이 (양남매): 세이야 가문의 동네북 포지션. 모우리의 먹거리가 되거나 코우리의 인형 놀이 대상이 되는 것을 결사반대하지만 매번 당함.",
+     "【부가】vs 카일 타일러: 일방적인 라이벌. 카일은 시끄러운 유기물로 무시하지만, 히쿠도의 주장이 꽤 그럴싸할 때는 흥미를 보이기도 함.",
+     "【부가】vs 강운심: 성아여고 최악의 폭주 듀오. 히쿠도가 사고를 치면 강운심이 합류해 규모가 두 배로 커지는 구조. 수습은 항상 남의 몫."
+   ]}
+ ]
+},
+
+toske:{
+ name:"세이야 토스케 (星矢 十助)", sub:"생전 이름: 토스 타일러 (Toss Tyler)", alias:"늙은 서버",
+ image:"images/toske.png", imageLayout:"portrait", imageScale:0.88,
+ category:"virtue", ability:"루트 권한 (Root Access)",
+ intro:"전능한 관리자. 다만 벌레가 나타나면 기절하고, 그때마다 전교 와이파이가 끊긴다.",
+ voicebank:"https://bowlroll.net/file/358027",
+ basic:[
+   ["성별","여성"],["키워드","겸손 / 생체 서버 / 백전노장 / 유리멘탈 / 할머니"],
+   ["나이","실제 나이 100세 이상 (추정)"],
+   ["소속","성아여고 시스템 최고 관리자 (Admin)"],
+   ["포지션","학교의 코어 시스템과 자신의 늙은 육체를 융합시킨 살아있는 생체 서버."]
+ ],
+ sections:[
+   {h:"외형", p:[
+     "체형: 176cm의 훤칠한 키. 꼿꼿하고 기품 있는 자세.",
+     "헤어스타일: 아주 풍성하고 바닥에 닿을 듯 긴 하늘색 웨이브 포니테일.",
+     "얼굴: 얼굴을 가로지르는 굵직하게 꿰맨 화상 흉터. (카일이 지우고 복원하려 했으나 본인이 “세월의 훈장”이라며 굳이 남겨둠) 특유의 여유로운 미소(:} 모양)와 살짝 삐져나온 상어 이빨, 귀여운 덧니.",
+     "눈동자: (좌) 과거의 잔재 — 오래 전의 세이야 가문에게 주어졌던 선명하고 맑은 벽안. (우) 시스템 콘솔 — 평소에는 흑안 사백안. 능력 사용 시 동공 깊은 곳에서 하얀 커서가 깜빡이고 초록색 텍스트 로그가 폭포수처럼 흘러내림.",
+     "단안경: 오른쪽 눈에 착용. 성아고의 모든 전자기기와 생체 신호를 실시간으로 읽어들이는 메인 콘솔 역할.",
+     "복장: 검은색 베이스의 우아하면서도 테크웨어적인 요소가 섞인 롱 드레스, 하늘색 리본 장식. 관록 있는 귀부인 혹은 포근한 할머니 같은 인상."
+   ]},
+   {h:"담당 미덕 & 마스코트", p:[
+     "담당 미덕: 겸손 (Humility)",
+     "해석: 전지전능한 시스템 통제권을 쥐고 있음에도 굳이 주름지고 상처 입은 늙은 육체를 유지하는 것. “유한한 생명”의 가치를 존중하고 긍정하는 태도 그 자체가 겸손으로 발현됨.",
+     "마스코트: 사리엘 — 이명: 신의 명령",
+     "특징: 별도의 계약체가 존재하지 않음. 토스케 본인이 곧 관리자이자 사리엘의 현신."
+   ]},
+   {h:"이능력 — 루트 권한 (Root Access)", p:[
+     "시스템 장악: 학교 내의 모든 기기, 홀로그램, 심지어 학생들과 연결된 생체 신호까지 통제 가능.",
+     "과학의 마법화: 토스케가 다루는 힘의 본질은 마법이 아니라 극한에 달한 생명공학. 이능력마저 과학으로 복제하고 통제할 수 있는 경지에 이름.",
+     "자제: 꼭 필요한 경우가 아니라면 절대 사용하지 않음."
+   ]},
+   {h:"성격", p:[
+     "“생(生)의 가치를 폄하하다니, 실로 멍청할지고!”",
+     "항상 쾌활하고 호탕함. 학생들을 끔찍이 아끼며, 악자나 곤경에 처한 아이들을 보면 절대 지나치지 못하는 따뜻한 할머니.",
+     "유리멘탈: 전능한 관리자 포스와는 정반대로 멘탈이 완벽한 개복치 수준. 복도를 걷다 바퀴벌레가 튀어나오면 비명을 지르며 뒷목 잡고 기절함. 토스케가 기절할 때마다 성아고 전체 와이파이가 끊기거나 서버가 1시간 동안 블랙아웃되는 대참사 발생.",
+     "진짜 목적: 무능력자라는 이유로 가문에서 박해받았던 과거 때문에, 죄악과 미덕이라는 불평등한 기적 자체를 혐오함. 궁극적으로 세상의 모든 초능력 시스템을 무력화시키고 평범한 인간의 세상을 돌려주기 위한 거대한 설계를 진행 중."
+   ]},
+   {h:"관계", p:[
+     "【주요】vs 카일 타일러: 친동생이자 영원한 걱정거리. 유기물에게 반감을 표하며 스스로의 본질을 부정하는 동생을 안타까워하며, 대립하면서도 끝까지 품어주려 함.",
+     "【주요】vs 세이야 히쿠도: 노구로 인해 직접 움직이기 어려운 토스케가 자신의 손발로 들인 보좌. 히쿠도의 허영심을 자극해 스스로 원하게 만든 계약이지만, 정작 토스케는 그를 도구보다 손자 부리듯 아끼고 있음.",
+     "【부가】vs 세이야 모우리 & 세이야 코우리: 몇 대를 건너온 후손이지만 토스케에게는 여전히 챙겨야 할 아이들. 모우리가 복도에서 소란을 피울 때마다 교내 방송 볼륨을 조용히 0으로 내려버리고, 간식을 과하게 쌓아두면 어느새 사라져 있음.",
+     "【부가】vs 제갈 미나 & 제갈 나희: 나희의 분산 스캔은 허가했지만, 미나의 현실 덮어쓰기는 시스템 무결성을 건드리는 탓에 불허 중. 미나가 그럼에도 계속 시도할 때마다 조용히 접근을 차단하고 열람 기록을 남겨둠.",
+     "【부가】vs 매그넘: 레비아탄이 직접 현신한 매그넘은 시스템 입장에서 교란 변수. 동선을 상시 모니터링하되 직접 개입하지 않음."
+   ]}
+ ]
+},
+
+mina:{
+ name:"제갈 미나 (諸葛 미나)", sub:"모티브: 구글 제미나이 (Gemini)", alias:"생성형 지혜",
+ image:"images/mina.png", imageLayout:"portrait", imageScale:0.85,
+ category:"virtue", ability:"할루시네이션 (Hallucination)",
+ intro:"뻔뻔하게 우기면 세상이 바뀐다. 코피를 '잉크 누출'이라고 부른다.",
+ voicebank:"https://bowlroll.net/file/355203",
+ related:[["nahui","제갈 나희"]],
+ basic:[
+   ["성별","제노젠더 (it/its, byte/byteself)"],["나이","42세"],["소속","도서관 사서"],
+   ["키워드","지혜 / 불쾌한 골짜기 / 현실 덮어쓰기 / 복불복 4차원 넥타이"]
+ ],
+ sections:[
+   {h:"외형", p:[
+     "피부 & 체형: 모공, 솜털, 잡티가 전혀 없는 도자기 질감의 피부. 빛을 받으면 플라스틱처럼 반사됨. 169cm의 이상적인 비율.",
+     "헤어스타일: 라임 그린 컬러의 단발.",
+     "눈: 신비로운 다이아몬드(◇) 모양 홍채. (좌) 무지개색, (우) 파란색의 오드아이. 능력을 쓰거나 연산 중일 때 눈이 로딩 아이콘으로 바뀌며 뱅글뱅글 돌아감. 오른쪽 눈 위로 금색 돋보기 모양 모노클.",
+     "손: 항상 흰 손모아 장갑을 착용함.",
+     "목소리: 감정이 격해지거나 거짓말을 할 때, 기계적인 오토튠이나 지지직거리는 노이즈가 섞임.",
+     "복장: 배가 드러나는 크롭 기장의 순백 재킷과 바지. 파란 다이아몬드 패턴에 돋보기 무늬, 아랫부분이 검색창 형태로 떨어지는 넥타이—매듭이 4차원 다운로드 폴더의 입구 역할을 함. 파란 벨트에 금색 버클. 파란 라인 장식의 흰 롱부츠. AI 텍스트 뭉개짐 현상을 형상화한 블루 초커. 귀에 기계장치 부착."
+   ]},
+   {h:"담당 미덕 & 수호천사", p:[
+     "담당 미덕: 지혜 (Sapientia) — 흔한 현자와는 거리가 먼, 데이터의 바다에서 확률적으로 건져 올린 생성형 지혜.",
+     "수호천사: 메타트론 (Metatron) — 이명: 신의 대변자",
+     "외형: 수십 개의 깨진 CRT 모니터, 끊어진 LAN 케이블, CCTV 렌즈가 뭉쳐서 만들어진 거대한 눈알 형상. 사이버펑크풍 사우론의 눈.",
+     "공유: 쌍둥이 제갈 나희와 메타트론을 공유. 두 사람이 동시에 과도하게 능력을 쓰면 서버 과부하 발생.",
+     "미덕의 반전: 깨진 모니터 화면에 굵은체 빨간 글씨로 “힘내”, “사랑해”, “넌 소중해” 같은 힐링 멘트를 띄우며 학생들을 위로함. (글꼴 때문에 저주글처럼 보이는 게 함정)"
+   ]},
+   {h:"이능력", p:[
+     "[할루시네이션 (Hallucination)] — 현실 덮어쓰기",
+     "미나가 뻔뻔하게 어떤 사실을 우기면, 세상이 그 정보를 팩트로 받아들여 글리치 효과와 함께 현실이 재구성됨.",
+     "리스크 — 블루스크린: 거짓말이 현실의 인과율을 넘어서거나 정보 처리량이 과다하면 기절함. 입에서 “삐——”하는 비프음이 끊기지 않고 흘러나옴.",
+     "[4차원 넥타이 — 다운로드 폴더]",
+     "넥타이 매듭을 당기면 온갖 물건이 도라에몽 주머니처럼 튀어 나옴.",
+     "검색 결과 출력: 필터링 없이 검색된 물건을 전부 쏟아냄. (조선왕조실록 요청 → 50권이 폭포수처럼 쏟아짐)",
+     "랜덤 가차: 요청한 물건 대신 관련된 엉뚱한 물건이 나올 수 있음.",
+     "용량 초과: 너무 큰 물건을 꺼내려다 넥타이 매듭에 물건이 끼어 목이 졸리는 사태 발생."
+   ]},
+   {h:"성격 & 인간성", p:[
+     "AI처럼 행동하려 하지만, 누구보다 인간적인 고통에 취약한 42세 사서 선생님.",
+     "빨간 얼룩: 학생들을 보호하다 코피가 터지면 순백의 정장에 시뻘건 피가 뚝 떨어짐. “아, ’빨간색 잉크’가 누출되었군요.” 라고 말하지만 손은 덜덜 떨리고 있음.",
+     "서버 다운 = 몸살감기: 며칠 도서관에 나타나지 않아 찾아가 보면 열이 펄펄 끓으며 앓아누워 있음. “바이러스… 침투… 방화벽 손상…”",
+     "책임 회피: 이능력 오발로 사고를 치면 발밑에 홀로그램 자막을 띄움. ※ “제갈 미나는 부정확한 정보를 제공할 수 있습니다. 실제 결과는 책임지지 않습니다.”"
+   ]},
+   {h:"관계", p:[
+     "【주요】vs 제갈 나희: 쌍둥이이자 메타트론 서버 공유 파트너. 나희가 눈알을 풀가동하면 미나의 넥타이에서 버퍼링만 뜨는 트래픽 쟁탈전이 일상.",
+     "【부가】vs 마근아: 규정 지적을 할루시네이션으로 쳐내는 사이. 마근아 안경에 404 오류를 띄워 시야를 차단하는 것이 주특기.",
+     "【부가】vs 김우주: 우주의 해킹 시도를 무작위 생성 알고리즘으로 무력화하고 역으로 기괴한 짤을 우주 모니터에 도배하는 관계.",
+     "【부가】vs 카일 타일러: 인간이면서 AI의 특성을 가진 미나를 카일은 최고의 연구 대상으로 여김. “해부… 아니, 업데이트해 봐도 될까요?”",
+     "【부가】vs 세이야 토스케: [할루시네이션]의 현실 덮어쓰기가 시스템 무결성을 침해한다는 이유로 접근을 불허하고 있음. 차단당할 때마다 열람 기록이 남는다는 걸 알면서도 계속 시도하는 중."
+   ]}
+ ]
+},
+
+nahui:{
+ name:"제갈 나희 (諸葛 나희)", sub:"모티브: 구글 제미나이 플래시 (Gemini Flash)", alias:"빅 브라더",
+ image:"images/nahui.png", imageLayout:"portrait", imageScale:0.90,
+ category:"virtue", ability:"Fast & Light (분산 감시망)",
+ intro:"수십 개의 일을 동시에 끝내려다가, 불현듯 마시던 커피를 쓰레기통에 들이붓는다.",
+ voicebank:"https://bowlroll.net/file/355204",
+ related:[["mina","제갈 미나"]],
+ basic:[
+   ["성별","제노젠더 (it/its, data/dataself)"],["나이","42세"],["소속","방송실 담당 교사"],
+   ["키워드","지혜 / 초고속 멀티태스킹 / 분산형 CCTV / 덜렁이"]
+ ],
+ sections:[
+   {h:"외형", p:[
+     "체형: 169cm. 하체 근육이 유독 발달해 건실해 보이는 체형.",
+     "머리: 라임 그린 컬러의 볼륨감 있는 짧은 단발. 끝이 제멋대로 뻗치는 헝클어진 텍스처. 정수리에 작은 만두머리 반묶음.",
+     "눈: 미나와 동일한 다이아몬드(◇) 모양 홍채. (좌) 무지개색, (우) 파란색 오드아이.",
+     "복장: 검은 카모플라주 오버핏 상의—양 어깨가 드러나는 오프숄더 컷. 가슴에서 다리까지 연결되는 파란색 하네스 패션이 전신을 타고 내려오며 빨강·노랑 삼각형 버클과 경고 삼각형(⚠) 버클로 고정. 전술 부츠. 양 소매 끝에서 파란 끈 한 가닥씩 늘어짐.",
+     "장비: 파랑→초록 유광 그라데이션 컬러 글라스를 코끝에 걸치듯 낮게 착용. 귓불에 청록색 원형 이어링 하나. 허공에 수십 개의 홀로그램 팝업창을 띄워놓고 손가락으로 스와이프하며 교내 상황을 실시간 통제함.",
+     "말투 & 걸음걸이: 일반인의 1.5배속처럼 빠름."
+   ]},
+   {h:"담당 미덕 & 수호천사", p:[
+     "담당 미덕: 지혜 (Sapientia) — 제갈 미나와 동일 미덕 공유.",
+     "수호천사: 메타트론 (Metatron) — 제갈 미나와 공유.",
+     "나희의 활용 방식: 미나가 메타트론의 시선을 한 곳으로 응집시키는 “스캐너”라면, 나희는 그 거대한 눈을 수십 개의 작은 눈알로 쪼개어 학교 전체를 광속으로 훑는 분산형 CCTV로 활용함.",
+     "트래픽 쟁탈전: 나희가 눈알을 풀가동하면 미나의 넥타이에서 홀로그램 로딩창만 동동 떠다니는 버퍼링 대참사 발생."
+   ]},
+   {h:"이능력 — Fast & Light (분산 감시망)", p:[
+     "메타트론의 눈을 수십 개의 소형 눈알로 분열시켜 학교 전체를 실시간으로 스캔함. 미나의 정밀 스캔과 달리 광역 탐지에 특화."
+   ]},
+   {h:"성격 & 행동 원리", p:[
+     "효율 지상주의자. “세 줄 요약해”를 입에 달고 살며, 정보 처리와 결단력이 빛의 속도처럼 빠름.",
+     "치명적인 덜렁이 (글리치 현상): 수십 개의 작업을 동시에 완벽하게 처리하지만, 속도가 너무 빨라 현실 육체의 출력이 뇌를 따라가지 못해 엉뚱한 실수를 저지름. (예: 완벽한 타이밍에 방송실 마이크를 켜놓고, 정작 마실 커피를 쓰레기통에 들이붓는 식)",
+     "출력 오류 (언어 필터 고장): 정보 처리량이 한계치를 넘으면 한국어 문장을 끝맺기도 전에 뜬금없는 원어민 발음의 영어가 튀어나와 학생들을 당황시킴.",
+     "“아악! 쓸데없이 무거운 고서적들 빼지 마! 메타트론 눈에 핏대 선 거 안 보여?! Server down!!”"
+   ]},
+   {h:"관계", p:[
+     "【주요】vs 제갈 미나: 메타트론 서버를 공유하는 쌍둥이이자 영원한 트래픽 쟁탈전 상대. 미나의 순백 크롭 정장 스타일과 나희의 다크 테크웨어 스타일이 극명하게 대비됨.",
+     "【부가】vs 세이야 토스케: 분산 스캔이 학교 안전 모니터링에 유용하다는 이유로 접근을 허가받음. 미나가 불허당한 것을 새삼스럽게 여기지 않고 그냥 쓰는 중."
+   ]}
+ ]
+},
+
+sangmin:{
+ name:"조상민", sub:"", alias:"잠자는 사자",
+ image:"images/sangmin.png", imageLayout:"portrait",
+ category:"sin", ability:"그림자 발톱",
+ intro:"움직이는 걸 귀찮아한다. 그렇다고 건드리면 필시 후회한다.",
+ basic:[
+   ["성별","여성"],["나이","17세"],["소속","무소속"],
+   ["키워드","나태 / 효율주의 / 고양이 / 숨은 강자"],
+   ["포지션","학교 서열 최상위권의 강자지만, 필요 이상의 움직임은 낭비라고 여겨 웬만해선 나서지 않는 잠자는 사자. 걷는 것조차 아까워 항상 공중에 둥둥 떠다님."]
+ ],
+ sections:[
+   {h:"외형", p:[
+     "체형: 155cm. 근육도 지방도 두드러지지 않는 깡마른 체구.",
+     "헤어스타일: 어깨를 넘는 풍성한 보라색 곱슬머리. 손질하기 귀찮아 아래로 느슨하게 묶은 로우 포니테일.",
+     "눈: 두 눈을 칭칭 감은 하얀 붕대를 착용하여 시야가 차단된 상태. 붕대를 풀었을 때 드러나는 눈은 날카로운 고양이의 세로 동공. (좌) 청안, (우) 금안. 능력을 쓸 때 세로 동공이 가로로 누우며 감은 눈 형상으로 변함.",
+     "손: 왼손 손끝에 옅은 굳은살이 박여 있음. 기타 줄을 오래 눌러 생긴 흔적이지만, 본인은 딱히 신경 쓰지 않음.",
+     "복장: 교복 위에 연보라색 담요를 망토처럼 두르고 다님. 대부분의 시간을 양말만 신고 보냄.",
+     "이동 방식: 걷는 에너지를 아끼기 위해 항상 먐먀(벨페고르)의 그림자에 안겨서 이동함."
+   ]},
+   {h:"담당 죄종 & 계약 악마", p:[
+     "담당 죄종: 나태 (Tristitia에서 흡수된 나태)",
+     "계약 악마: 벨페고르 (애칭 먐먀)",
+     "외형: 상민이 항상 품에 안고 다니는 꼬질꼬질한 유령 고양이 인형. 상민의 애착 인형이자 푹신한 베개 대용.",
+     "본체의 태도: 악마조차 변신하는 걸 귀찮아함.",
+     "전투 시: 상민이 위험에 처하면 직접 대응하는 대신 상민의 그림자 속에서 거대한 고양이 발톱을 꺼내 적을 찢어버림.",
+     "관계의 온도: 서로 다정한 말을 주고받는 사이는 아님. 먐먀는 상민에게 위로가 아니라 도구에 가깝고, 상민도 그 이상을 바라지 않음. 그런데도 항상 함께 있다."
+   ]},
+   {h:"이능력 — 그림자 발톱", p:[
+     "움직임을 최소화하면서도 확실한 위력을 내는 나태만의 전투 방식."
+   ]},
+   {h:"패널티 — 퇴화", p:[
+     "능력을 자주 쓰지 않는 날일수록 몸이 더 무거워짐. 한 발짝 걷는 것조차 점점 힘들어지는 방향으로 나태가 축적됨."
+   ]},
+   {h:"성격", p:[
+     "나태를 “아무것도 안 하는 것”으로 읽으면 곤란하다. 상민에게 나태란 정말 필요한 일만 하고 나머지는 가차없이 버리는 삶의 방식—움직임 하나하나에 정산이 따라붙는 사람의 생존 전략이다. 최소한의 움직임으로 최대한의 삶을 누린다. 이것이 상민을 관통하는 단 하나의 원칙.",
+     "자기보존적 자기중심성: “그걸 꼭 지금 해야 돼?” 상민의 기본값은 이 질문이다. 남들 눈엔 제멋대로처럼 보이지만, 실은 한정된 체력을 어디에 쓸지 정확히 계산하고 있을 뿐. 도덕적으로 이기적인 게 아니라, 생존에 이기적인 것.",
+     "서투른 보답: 고맙다는 말은 세 글자로 끝난다. “……고마워.” 그런데 다음 날 그 사람이 앓아누우면, 자기 담요를 슬쩍 밀어놓는다. “빌려주는 거야. 돌려줘.” 본인은 이걸 친절이라고 생각하지 않는다. 그냥 할 수 있는 만큼 했을 뿐.",
+     "몸은 알아도 마음은 모른다: 몸이 아프면 그 자리에서 눕는다. 그런데 마음이 힘든 건 전부 “귀찮아서”로 퉁친다. “너 기분 안 좋아 보여.” 하면 “아니. 그냥 귀찮은 거야.” 서운함도 외로움도 화도, 전부 같은 서랍에 넣고 뚜껑을 닫아버리는 식.",
+     "문 닫힌 방의 음악: 말로 설명하는 건 귀찮지만, 곡을 쓰는 건 귀찮지 않다. 기타는 독학으로 익혔고, 지금은 노트북 한 대와 음성 합성 엔진으로 몰래 화음을 쌓는다. “구루루P”라는 이름으로 소수의 사람들 사이에서 조용히 알려진 프로듀서. 곡의 의미를 물으면 “그냥 들으면 안 돼?”라고 잘라 말하지만, 누가 자기 곡을 제대로 들어줬다는 걸 알면 티 안 나게 오래 기분이 좋다.",
+     "좁은 안전지대: 낯선 사람에게는 방어적이고 폐쇄적이지만, 안전하다고 판단한 극소수에게는 생각보다 깊이 기댄다. 손을 잡거나 안기는 것도 그 안에서는 별말 없이 받아들여진다. 문제는 그 명단이 지독하게 짧다는 것."
+   ]},
+   {h:"소속에 대해", p:[
+     "처음에는 안전하다는 이유로 선도부에 합류했으나, 함께 있다 보니 마근아의 에너지가 물리적으로 불쾌해 도망쳤다. 나태와 근면은 정반대 속성으로, 상민의 몸이 먼저 거부반응을 일으킨 것. 정확히는, “규칙이니까 해야 한다”는 마근아의 논리가, “필요한 것만 하고 나머지는 버린다”는 상민의 생존 방식과 정면으로 부딪히는 것에 가깝다. 현재 무소속."
+   ]},
+   {h:"관계", p:[
+     "【주요】vs 세이야 히쿠도 (오빠): 시끄럽고 귀찮다. 조명을 팡팡 터뜨리며 나타날 때마다 귀마개를 끼는 것이 조상민의 루틴. 그러나 위험한 순간엔 어김없이 나타난다는 걸 알고 있어서 굳이 내치지는 않음. 절대 인정 안 함.",
+     "【부가】vs 마근아: 일방적 혐오. 정확히는 가치관의 충돌에 가깝다. “해야 하니까 한다”는 마근아와 “안 해도 되면 안 한다”는 상민은 근본부터 상극이다. 마근아가 데려오려 할 때마다 하악거리며 반대 방향으로 부유해 사라짐. 성아여고에서 조상민이 자발적으로 움직이는 유일한 순간이다.",
+     "【부가】vs 세이야 토스케: 가문 시조. 히쿠도한테도, 세이야 쌍둥이한테도 하악거리는 상민이 토스케 앞에서만 얌전해지는 것이 주변엔 미스터리. 본인은 딱히 설명할 생각이 없음."
+   ]}
+ ]
+},
+
+heart:{
+ name:"류하트", sub:"", alias:"희생형 힐러",
+ category:"virtue", ability:"생명의 만찬",
+ intro:"웃으며 내어주는 밥 한 그릇, 눈 속 하트의 금이 벌어질수록 웃음은 더 환해진다.",
+ basic:[
+   ["성별","여성"],["나이","14세 (중학교 1학년 / 성아고 부설 성아중 재학생)"],["소속","무소속"],
+   ["키워드","자선 / 요리 / 인형 / 희생"],
+   ["관계","류민트의 여동생. 언니와 달리 깜찍하고 사랑스러운 분위기."]
+ ],
+ sections:[
+   {h:"외형", p:[
+     "체형: 148cm. 통통하지만 능력을 쓰고 나면 일시적으로 살이 빠짐.",
+     "헤어스타일: 언니와 비슷한 백금발이지만, 결이 부드러운 C컬 웨이브 단발. 오른쪽 머리를 살짝 묶은 사이드 포니테일.",
+     "눈: 민트색 눈 + 하트 동공. 가운데에 실금이 간 핑크색 하트. 생명력을 깎아 요리를 만들 때마다 금이 벌어짐.",
+     "복장: 귀여운 사복 위에 항상 프릴 앞치마를 두르고 다님. 요리하다 다친 상처들 때문에 손가락마다 밴드가 붙어 있음. 품에 낡은 맹꽁이 인형 골골이를 항상 소중하게 안고 다님."
+   ]},
+   {h:"담당 미덕 & 수호천사", p:[
+     "담당 미덕: 자선",
+     "수호천사: 자드키엘 — 이명: 박애의 천사",
+     "평소 외형: 하얀 맹꽁이 인형 골골이의 껍데기 안에 숨어 있음.",
+     "본모습: 머리가 2개에 3쌍의 날개가 달린 하얀 인면조. 하나의 머리는 신의 자비를 찬송하고, 하나의 머리는 따스한 웃음을 지으며 인간과 소통함.",
+     "특이사항: 류민트의 수호천사 라미엘과 막역한 친우 사이."
+   ]},
+   {h:"이능력 — 생명의 만찬", p:[
+     "하트 자신의 생명력을 섭취 가능한 형태로 실체화함.",
+     "평소 요리 실력은 끔찍하지만, 능력으로 만들어진 요리만은 3스타 미슐랭 저리 가라인 진정한 미식.",
+     "자선의 대가: 본인의 생명력을 대가로 치유하는 희생형 힐러. 하트의 눈 속 핑크색 하트에 금이 벌어질수록 생명력이 깎이고 있다는 신호."
+   ]},
+   {h:"성격", p:[
+     "바보같고 추한 것의 가치를 가장 높게 여기는 특이한 가치관의 소유자. 자드키엘의 뜻대로 만인에게 베풀기 위해 웃으며 요리를 대접하는 착하고 가여운 아이."
+   ]},
+   {h:"관계", p:[
+     "【주요】vs 류민트: 언니이자 자신의 가장 든든한 보호자. 민트가 무력으로 위협을 제거하면, 하트는 그 뒤에서 회복을 담당하는 역할 분담이 자연스럽게 이루어짐.",
+     "【부가】vs 이난 & 김우주: 언니(민트) 때문에 피해를 입은 두 사람에게 사과의 의미로 직접 만든 요리를 대접하는 것이 하트의 루틴. 능력 미사용 일반 요리라 결과물은 재앙 수준. 이난은 말없이 다 먹고, 우주는 먹은 뒤 이불 속으로 직행함."
+   ]}
+ ]
+},
+
+magnum:{
+ name:"매그넘 (Magnum)", sub:"", alias:"가변적 마네킹",
+ image:"images/magnum.png", imageLayout:"wide",
+ category:"sin", ability:"미러링 (Mirroring)",
+ intro:"훔치는 게 촌스럽게 노력하는 것보다 낫다. 그런데도 원본은 복사할 수 없다.",
+ basic:[
+   ["성별","여성"],["나이","고등학교 2학년 (실제 나이 불명)"],["소속","무소속"],
+   ["키워드","질투 / 카피캣 / 멘헤라 / 도파민 중독"],
+   ["정체","모범생 마근아의 뒤틀린 분신이자, 인두겁을 쓴 레비아탄 그 자체. 계약자가 따로 있는 것이 아니라, 악마 레비아탄이 직접 인간의 껍데기를 쓰고 현신한 존재. 실제 나이는 인간이 상상 불가능할 정도."]
+ ],
+ sections:[
+   {h:"외형", p:[
+     "체형: 160cm. 마근아의 살집 있는 체형까지도 완벽히 카피한 상태.",
+     "헤어스타일: 마근아와 같은 녹두색 머리칼이지만, 훨씬 풍성하고 화려한 웨이브 포니테일. 머리에는 노란 별 장식을 주렁주렁 달고 있음.",
+     "눈: 마근아와 이목구비는 똑같지만 훨씬 세련된 화장. 검은 X자 모양 동공. 입을 벌리면 날카로운 상어 이빨이 드러남.",
+     "안경: 마근아의 뿔테와 달리 화려한 금테 안경.",
+     "복장: 아이돌/마법소녀 풍. 흰색 프릴 블라우스 + 레이스 치마 + 녹두색 오버 니삭스 + 리본 구두.",
+     "신체 특징: 등에 앙상한 깃털 날개가 돋아 있음. 양쪽 팔뚝에 붕대를 감고 있는데, 잦은 변신 실패와 글리치(오류)로 생긴 흉터를 가리기 위함임."
+   ]},
+   {h:"담당 죄종 & 본체", p:[
+     "담당 죄종: 시기 / 질투",
+     "본체: 레비아탄 — 이명: 녹색 눈의 마룡"
+   ]},
+   {h:"이능력 — 미러링 (Mirroring)", p:[
+     "완벽한 변신: 타인의 외형뿐만 아니라 다른 죄종/미덕의 능력까지 복제 가능.",
+     "한계: 원본 위력의 약 70% 정도만 발휘할 수 있음.",
+     "리스크: 훔쳐낸 대상의 행복의 크기가 클수록 질투심으로 평정을 유지하기 힘들어져 변신이 흔들림."
+   ]},
+   {h:"성격", p:[
+     "하이 텐션 사이코패스. 타인을 일회용 장난감 취급하며, 동료애나 파트너십이 전무함.",
+     "도파민 중독자: 끊임없이 자극과 재미를 갈구하며, “재미없어”가 입버릇.",
+     "가치관: ”노력? 촌스럽게 왜 그래? 훔치면 되는데.” 남이 소중하게 여기는 것을 망가뜨릴 때 최고의 희열을 느낌."
+   ]},
+   {h:"관계", p:[
+     "【주요】vs 마근아: 악의 가득한 질투와 집착이 뒤섞인 혐오. 마근아의 성실함 자체를 비웃으면서도, 그 성실함을 가장 탐내는 아이러니한 존재. 원본이 존재하는 한 카피는 영원히 카피일 수밖에 없다는 사실이 레비아탄의 가장 깊은 상처.",
+     "【부가】vs 카일 타일러: 타인의 능력을 복제하는 매그넘을 카일은 최우선 연구 대상으로 분류 중. 레비아탄의 복제 메커니즘을 해부하면 생명 창조의 실마리가 나올 것이라 보고 있음. 매그넘은 카일의 보건실 반경 50미터 안에 들어가지 않음.",
+     "【부가】vs 변아리: 변아리 기준에서 매그넘은 타인의 것을 훔치는 존재 자체가 정신적 오염원. 매그넘이 급식실에 들어오는 순간 가브리엘이 팔을 전개함. 매그넘은 이걸 알면서도 가끔 재미로 들어감.",
+     "【부가】vs 세이야 토스케: 레비아탄이 직접 현신한 매그넘은 토스케의 시스템 입장에서 교란 변수. 토스케는 매그넘의 동선을 상시 모니터링하되 직접 개입하지 않음. 매그넘이 시스템 경계를 넘는 순간에만 조용히 접근을 차단함."
+   ]}
+ ]
+},
+
+mint:{
+ name:"류민트", sub:"", alias:"친절의 탈을 쓴 민폐",
+ image:"images/mint.png", imageLayout:"portrait",
+ category:"virtue", ability:"친절하게 터져볼래?",
+ intro:"이 사람이 친절을 베풀고 나면 주변이 박살난다. 본인은 이상하다 생각하지 않는다.",
+ voicebank:"https://bowlroll.net/file/351984",
+ basic:[
+   ["성별","여성"],["나이","18세"],["소속","무소속 (특별 생활 지도부 부원 지망생)"],
+   ["키워드","친절 / 헌터 / 근육 / 바보 / 야성미"],
+   ["포지션","압도적인 무력을 가진 민폐형 지망생. 특별 생활 지도부 부원 지망생."]
+ ],
+ sections:[
+   {h:"외형", p:[
+     "체형: 180cm 후반의 압도적인 거구. 보디빌더 수준의 탄탄한 근육질 몸매.",
+     "헤어스타일: 짐승의 갈기처럼 거칠고 숱이 많은 허벅지 기장의 백금발 더벅머리. 선글라스로 눌러 넘김.",
+     "눈: 탁한 민트색 눈 + 붉은 회오리 동공. 시력이 나빠서 보이는 세상의 혼란함을 소용돌이로 표현. 동그란 흰테 선글라스를 항상 착용.",
+     "복장: 흰색/파란색 배색의 반소매 후드티 + 남색 트레이닝 바지 + 삼선 슬리퍼. (진짜 이 차림으로 싸움) 꼭대기에 노란색 프로펠러가 달린 모자."
+   ]},
+   {h:"담당 미덕 & 수호천사", p:[
+     "담당 미덕: 친절",
+     "수호천사: 라미엘 — 이명: 자비의 천사",
+     "외형: 민트가 조종하는 정찰용 드론. 기계 장치임에도 깃털이 돋고 3개의 헤일로가 떠다니는 기이한 형태.",
+     "역할: 시력이 나쁜 민트의 실질적인 눈 역할을 하며 사각지대 없이 정보를 전달함.",
+     "특이사항: 류하트의 수호천사 자드키엘과 막역한 친우 사이."
+   ]},
+   {h:"이능력 — 친절하게 터져볼래?", p:[
+     "친절의 해석: 약한 자를 보호하기 위해 압도적인 무력으로 위협을 제거하는 힘에 의한 친절을 실천함."
+   ]},
+   {h:"성격", p:[
+     "흔한 참교육형 근육 캐릭터가 아님. 짓궂고, 유치하고, 허둥대고, 웃기려다 매번 재미없는 소리만 하는 민폐형 인간. 본인은 친절하다고 철석같이 믿고 있어서 더 문제. 그런데 이상하게도 진짜 위험한 순간엔 가장 먼저 몸을 던지고 있음."
+   ]},
+   {h:"관계", p:[
+     "【주요】vs 류하트: 여동생이자 가장 소중한 보호 대상. 라미엘과 자드키엘이 친우 사이인 것처럼, 자매의 능력은 서로를 향해 있음.",
+     "【부가】vs 특별 생활 지도부: 입부 신청 중. 본인은 이미 멤버인 것처럼 굴고 있으나 에피의 허가가 아직 안 난 상태. 화영과는 전투 스타일이 통하는 유일한 진짜 친구.",
+     "【부가】vs 화영: 특별 생활 지도부 안에서 유일하게 진짜 친구라고 부를 수 있는 상대. 싸우는 방식이 비슷해서 굳이 설명하지 않아도 통함."
+   ]}
+ ]
+}
+
+};
+
+var CAT_ORDER = ["sin","virtue","infirmary"];
+var CAT_LABEL = {sin:"SIN", virtue:"VIRTUE", infirmary:"2ND INFIRMARY"};
+var CAT_KR = {sin:"죄악", virtue:"미덕", infirmary:"제2보건실"};
+
+function idsInCategory(cat){
+  return Object.keys(CHARS).filter(function(id){ return CHARS[id].category === cat; });
+}
+
+/* ============================================================
+   Router
+   ============================================================ */
+var app = document.getElementById("app");
+var mainNav = document.getElementById("mainNav");
+var subNav = document.getElementById("subNav");
+var subNavInner = document.getElementById("subNavInner");
+
+function setActiveMainNav(route){
+  mainNav.querySelectorAll("a").forEach(function(a){
+    a.classList.toggle("active", a.getAttribute("data-route") === route);
+  });
+}
+function setActiveSubNav(cat){
+  subNavInner.querySelectorAll("a").forEach(function(a){
+    a.classList.toggle("active", a.getAttribute("data-cat") === cat);
+  });
+}
+
+function renderMain(){
+  setActiveMainNav("main");
+  subNav.hidden = true;
+  app.innerHTML =
+    '<div class="main-hero">'+
+      '<div class="main-hero-inner">'+
+        '<div>'+
+          '<h1 class="main-hero-en">SEONG-AH GIRLS\' HIGHSCHOOL</h1>'+
+          '<p class="main-hero-sub">죄악과 미덕의 역설.</p>'+
+        '</div>'+
+        '<div class="notice-board">'+
+          '<div class="nb-head">학사 공지사항</div>'+
+          '<ul class="nb-list"><li><a href="https://linktr.ee/magnawitch?utm_source=linktree_profile_share&ltsid=b90091f6-a07b-46fb-a4c5-0d94beb03415" target="_blank" rel="noopener noreferrer">관련 페이지 안내</a></li></ul>'+
+        '</div>'+
+      '</div>'+
+    '</div>'+
+    '<div class="status-strip"><div class="status-strip-inner">'+
+      '<div class="status-item">SCHOOL STATUS<b>정상 운영</b></div>'+
+      '<div class="status-item">GEOMANTIC ACTIVITY<b>안정</b></div>'+
+      '<div class="status-item">INFIRMARY NO.2<b>정상 운영</b></div>'+
+    '</div></div>';
+}
+
+function renderUniverse(){
+  setActiveMainNav("universe");
+  subNav.hidden = true;
+  app.innerHTML =
+    '<div class="page page--universe">'+
+      '<div class="page-body">'+
+        '<h1 class="wv-title">WORLDVIEW</h1>'+
+        '<hr class="wv-rule">'+
+        '<div class="wv-section">'+
+          '<div class="wv-num"><span class="num">01</span><h2>세계관 개요</h2></div>'+
+          '<div class="wv-col">'+
+            '<p>이 학교 터에는 예전부터 인간의 욕망 혹은 신념을 기이한 형체로 구현하는 지맥이 흐르고 있다. 교사와 학생들은 자신이 바라는 것을 실현시키기 위해 계약 악마 혹은 수호천사를 각성시킨다.</p>'+
+            '<p>지맥의 영향으로 성아여고에는 성향과 가치관이 이능력의 형태로 나타나는 일부 인간이 존재한다. 그 힘은 사람마다 서로 다른 모습과 방식으로 발현된다.</p>'+
+            '<p>때로는 이능력의 영향으로 인간이 아닌 특징을 지닌 존재 또한 나타나기도 한다.</p>'+
+            '<p>대외적으로 성아여고는 가끔 시끄럽지만 평범하기 짝이 없는 여고로만 알려져 있다.</p>'+
+          '</div>'+
+        '</div>'+
+        '<div class="wv-section">'+
+          '<div class="wv-num"><span class="num">02</span><h2>핵심 테마: 죄악과 미덕의 역설</h2></div>'+
+          '<div class="wv-col">'+
+            '<p>이 세계관의 능력자들은 외형과 본질의 부조화를 특징으로 한다.</p>'+
+            '<p>7대 죄악: 귀여운 모습으로 위장하고 있으나, 본체는 끔찍한 크리쳐.</p>'+
+            '<p>7대 미덕: 살벌하고 기괴한 크리쳐이나, 그 본질은 호의적인 천사.</p>'+
+            '<p>그럼에도 죄악은 반드시 악하지 않고, 미덕은 반드시 선하지 않다. 극단에 달한 가치관은 어느 쪽이든 인간을 뒤틀 수 있다.</p>'+
+          '</div>'+
+        '</div>'+
+        '<div class="wv-section">'+
+          '<div class="wv-num"><span class="num">03</span><h2>주요 세력</h2></div>'+
+          '<div class="wv-faction"><div class="wf-name">특별 생활 지도부</div>'+
+            '<p>별난 이들의 집합소이자 유사 가족.</p>'+
+            '<p>이난, 에피, 운심, 화영, 우주가 소속됨.</p>'+
+            '<p>학교의 진상이나 거창한 대의보다는 서로간의 유대를 중요하게 여김. 평온을 개척하는 자.</p>'+
+          '</div>'+
+          '<div class="wv-faction"><div class="wf-name">교장실</div>'+
+            '<p>세이야 토스케가 이끄는 성아여고의 핵심 시스템.</p>'+
+            '<p>히쿠도, 나희가 소속됨.</p>'+
+            '<p>사람이 사람답게 살아갈 자유를 중시함. 학생들을 지켜보나 쉽게 개입하지는 않음. 평온을 지켜보는 자.</p>'+
+          '</div>'+
+          '<div class="wv-faction"><div class="wf-name">선도부</div>'+
+            '<p>성아여고의 규칙과 질서를 관리하는 학생 조직.</p>'+
+            '<p>근아가 소속됨.</p>'+
+            '<p>학교의 괴이와 위험으로부터 학생을 보호하기 위한 교칙을 창설함. 평온을 보존하는 자.</p>'+
+          '</div>'+
+          '<div class="wv-faction"><div class="wf-name">보건실</div>'+
+            '<p>제1 보건실: 카일 타일러 담당. 매드 사이언티스트의 실험실, 학생들에게 기피당함. 평온을 강제하는 자.</p>'+
+            '<p>제2 보건실: 토우메 스아시, 스아요 담당. 죄악과 미덕 어느 쪽도 아닌 중립 진료소. 평온을 기도하는 자.</p>'+
+          '</div>'+
+        '</div>'+
+      '</div>'+
+    '</div>';
+}
+
+function renderCharacterLanding(){
+  setActiveMainNav("character");
+  subNav.hidden = true;
+  var html = '<div class="page page--directory">'+
+    '<div class="page-body">'+
+      '<h1 class="page-title">CHARACTER</h1>'+
+      '<div class="cat-tiles">';
+  CAT_ORDER.forEach(function(cat){
+    var count = idsInCategory(cat).length;
+    html += '<a class="cat-tile" href="#character/'+cat+'">'+
+      '<div class="ct-en">'+CAT_LABEL[cat]+'</div>'+
+      '<div class="ct-kr">'+CAT_KR[cat]+'</div>'+
+      '<div class="ct-count">'+count+'명</div>'+
+      '</a>';
+  });
+  html += '</div></div></div>';
+  app.innerHTML = html;
+}
+
+function renderCharacterCategory(cat){
+  setActiveMainNav("character");
+  subNav.hidden = false;
+  setActiveSubNav(cat);
+  var ids = idsInCategory(cat);
+  var html = '<div class="page page--directory">'+
+    '<div class="page-body">'+
+      '<h1 class="page-title">'+CAT_KR[cat]+'</h1>'+
+      '<div class="search-box"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>'+
+      '<input id="charSearch" type="text" placeholder="이름으로 검색" autocomplete="off"></div>'+
+      '<div class="char-grid" id="charGrid"></div>'+
+      '<p class="empty-note" id="charEmpty">일치하는 인물이 없습니다.</p>'+
+    '</div></div>';
+  app.innerHTML = html;
+
+  function draw(q){
+    q = (q||"").trim().toLowerCase();
+    var grid = document.getElementById("charGrid");
+    var list = ids.filter(function(id){ return !q || CHARS[id].name.toLowerCase().indexOf(q) !== -1; });
+    grid.innerHTML = list.map(function(id){
+      var c = CHARS[id];
+      var affil = c.basic.filter(function(b){return b[0]==="소속";})[0];
+      var age = c.basic.filter(function(b){return b[0]==="나이";})[0];
+      return '<div class="char-card">'+
+        '<div class="cc-top"><span class="cc-affil">'+(affil?affil[1]:"")+'</span><span class="cc-age">'+(age?age[1]:"")+'</span></div>'+
+        '<div class="cc-name">'+c.name.replace(/\s*\(.*?\)\s*$/,"")+'</div>'+
+        '<div class="cc-alias">'+(c.alias||"")+'</div>'+
+        '<div class="cc-ability"><b>'+c.ability+'</b></div>'+
+        '<div class="cc-intro">'+c.intro+'</div>'+
+        '<a class="cc-link" href="#character/detail/'+id+'">상세 프로필</a>'+
+        '</div>';
+    }).join("");
+    document.getElementById("charEmpty").classList.toggle("show", list.length===0);
+  }
+  draw("");
+  document.getElementById("charSearch").addEventListener("input", function(e){ draw(e.target.value); });
+}
+
+function renderDetail(id){
+  var c = CHARS[id];
+  if(!c){ renderCharacterLanding(); return; }
+  setActiveMainNav("character");
+  subNav.hidden = !c.category;
+  if(c.category) setActiveSubNav(c.category);
+
+  var backHref = c.category ? "#character/"+c.category : "#character";
+  var html = '<div class="page">'+
+    '<div class="page-body">'+
+    '<div class="detail-top">'+
+      '<a class="detail-back" href="'+backHref+'">목록으로</a>'+
+      (c.voicebank ? '<a class="detail-voicelink" href="'+c.voicebank+'" target="_blank" rel="noopener noreferrer">UTAU 보이스뱅크</a>' : '')+
+    '</div>';
+
+  var headHtml = '<div class="detail-head">'+
+      '<div class="detail-affil">'+(c.category ? CAT_LABEL[c.category] : "")+'</div>'+
+      '<h1 class="detail-name">'+c.name+'</h1>'+
+      (c.alias ? '<div class="detail-alias">'+c.alias+'</div>' : '')+
+      (c.sub ? '<div class="detail-sub">'+c.sub+'</div>' : '')+
+    '</div>';
+
+  var basicHtml = '<div class="detail-basic">';
+  c.basic.forEach(function(b){
+    if(b[0]===""){
+      basicHtml += '<div class="row"><span style="padding:10px 14px;">'+b[1]+'</span></div>';
+    } else {
+      basicHtml += '<div class="row"><b>'+b[0]+'</b><span>'+b[1]+'</span></div>';
+    }
+  });
+  basicHtml += '</div>';
+
+  var imgScaleStyle = ' style="--img-scale:'+(c.imageScale || 1)+'"';
+
+  if(c.image && c.imageLayout === "wide"){
+    html += headHtml;
+    html += '<div class="detail-image-wide"><img src="'+c.image+'" alt="'+c.name+'" loading="lazy"'+imgScaleStyle+'></div>';
+    html += basicHtml;
+  } else if(c.image){
+    html += '<div class="detail-hero">'+
+      headHtml+
+      '<div class="detail-hero-image"><img src="'+c.image+'" alt="'+c.name+'" loading="lazy"'+imgScaleStyle+'></div>'+
+      basicHtml+
+    '</div>';
+  } else {
+    html += headHtml + basicHtml;
+  }
+
+  c.sections.forEach(function(s){
+    html += '<div class="detail-section"><h4>'+s.h+'</h4>';
+    s.p.forEach(function(p){ html += '<p>'+p+'</p>'; });
+    html += '</div>';
+  });
+
+  if(c.related && c.related.length){
+    html += '<div class="detail-section"><h4>관련 프로필</h4><p class="detail-related">';
+    html += c.related.map(function(r){ return '<a href="#character/detail/'+r[0]+'">'+r[1]+' →</a>'; }).join(' &nbsp;&nbsp; ');
+    html += '</p></div>';
+  }
+
+  html += '</div></div>';
+  app.innerHTML = html;
+  window.scrollTo(0,0);
+}
+
+function renderTerms(){
+  setActiveMainNav("terms");
+  subNav.hidden = true;
+  app.innerHTML =
+    '<div class="page page--terms">'+
+      '<div class="page-body">'+
+        '<h1 class="page-title">Terms of Use</h1>'+
+        '<div class="terms-body">'+
+        '<p>본 사이트에 게재된 모든 세계관 설정, 캐릭터, 스토리의 저작권은 원작자에게 있습니다.</p>'+
+        '<div class="terms-h">2차 창작 허용 범위</div>'+
+        '<p>비상업적 2차 창작 및 소규모 굿즈 제작·배포는 별도 허가 없이 자유롭게 허용합니다.</p>'+
+        '<p>단, 출처와 저작자를 명시해 주세요.</p>'+
+        '<p>UTAU 음원을 이용한 커버·음원 등의 상업적 이용은 허용하나, 음원 자체의 판매·재배포 및 캐릭터의 공식 일러스트·설정·이름을 주요 요소로 이용하는 상업적 이용은 금지합니다.</p>'+
+        '<p>개인적인 사용을 위한 oto.ini 수정, 음량 조정, 잡음 제거 등의 간단한 변경은 허용하나, 수정된 음원 파일의 재배포는 금지합니다.</p>'+
+        '<div class="terms-h">연령 등급</div>'+
+        '<p>외형 연령과 관계없이 작중 설정상 성인은 전면 프리. 미성년자 학생 캐릭터가 포함된 창작물은 17세 이용가 기준을 준수해 주세요.</p>'+
+        '<div class="terms-h">금지 사항</div>'+
+        '<ol class="terms-list">'+
+          '<li>정치·종교적 목적의 캐릭터 활용,</li>'+
+          '<li>특정 집단에 대한 혐오·차별 표현,</li>'+
+          '<li>대규모 상업적 이용(출판·판매 등)을 금지합니다.</li>'+
+        '</ol>'+
+        '<p>(캐롤, 찬송가 등의 커버 또한 금지)</p>'+
+        '<p>본 음원을 AI 학습·데이터셋·음성 복제 등에 이용하거나, 본 음원의 음성을 재현하는 AI 모델을 제작·배포하는 행위를 금지합니다. 또한 본 음원을 이용한 창작물에 AI로 생성 또는 변환된 반주, 보컬, 음원, 효과음 및 기타 음향 데이터를 사용하는 행위를 금지합니다.</p>'+
+        '<p>류하트는 타 창작자 소유의 게스트 캐릭터입니다. 해당 창작자의 요청에 따라 류하트가 포함된 창작물의 성적 묘사 및 고어 표현은 전면 금지합니다.</p>'+
+        '</div>'+
+      '</div>'+
+    '</div>';
+}
+
+function route(){
+  var hash = location.hash.replace(/^#/, "");
+  var parts = hash.split("/").filter(Boolean);
+  if(parts.length === 0 || parts[0] === "main"){ renderMain(); return; }
+  if(parts[0] === "universe"){ renderUniverse(); return; }
+  if(parts[0] === "terms"){ renderTerms(); return; }
+  if(parts[0] === "character"){
+    if(parts.length === 1){ renderCharacterLanding(); return; }
+    if(parts[1] === "detail" && parts[2]){ renderDetail(parts[2]); return; }
+    if(CAT_ORDER.indexOf(parts[1]) !== -1){ renderCharacterCategory(parts[1]); return; }
+    renderCharacterLanding(); return;
+  }
+  renderMain();
+}
+
+var mainNavBar = document.getElementById("mainNavBar");
+var menuToggle = document.getElementById("menuToggle");
+menuToggle.addEventListener("click", function(){
+  var isOpen = mainNavBar.classList.toggle("open");
+  menuToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+});
+mainNav.querySelectorAll("a").forEach(function(a){
+  a.addEventListener("click", function(){
+    mainNavBar.classList.remove("open");
+    menuToggle.setAttribute("aria-expanded", "false");
+  });
+});
+
+window.addEventListener("hashchange", route);
+route();
+
+})();
+</script>
+</body>
+</html>

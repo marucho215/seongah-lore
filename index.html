@@ -184,6 +184,9 @@ nav.mainnav{
 .detail-hero-image img{display:inline-block;width:auto;height:auto;max-width:75vw;max-height:54vh;object-fit:contain;}
 .detail-image-wide{margin:0 0 28px;text-align:center;}
 .detail-image-wide img{display:inline-block;width:auto;height:auto;max-width:88vw;max-height:41vh;object-fit:contain;}
+.detail-art-credit{margin:8px 0 0;font-size:11px;line-height:1.6;color:var(--ink-faint);}
+.detail-art-credit a{color:inherit;text-decoration:underline;text-underline-offset:2px;}
+.detail-art-credit a:hover{color:var(--ink);}
 @media (min-width:760px){
   .detail-hero{grid-template-columns:65% 35%;grid-template-areas:"head img" "basic img";column-gap:32px;row-gap:20px;align-items:start;}
   .detail-hero-image{align-self:center;}
@@ -511,6 +514,8 @@ uju:{
 
 geuna:{
  name:"마근아", sub:"", alias:"근면의 시계토끼",
+ image:"images/geuna.png", imageLayout:"portrait",
+ artCredit:{name:"아쿠", handle:"@aTaTaM_", url:"https://crepe.cm/ko/@kimeuack"},
  category:"virtue", ability:"마그나 카르타 (Magna Carta)",
  intro:"규정집이 생존 지침서라는 사실을 본인 빼고는 다들 알고 있다.",
  voicebank:"https://bowlroll.net/file/362472",
@@ -1460,15 +1465,16 @@ function renderDetail(id){
   basicHtml += '</div>';
 
   var imgScaleStyle = ' style="--img-scale:'+(c.imageScale || 1)+'"';
+  var artCreditHtml = c.artCredit ? '<p class="detail-art-credit">일러스트: <a href="'+c.artCredit.url+'" target="_blank" rel="noopener noreferrer">'+c.artCredit.name+' ('+c.artCredit.handle+')</a> · 커미션 작업</p>' : '';
 
   if(c.image && c.imageLayout === "wide"){
     html += headHtml;
-    html += '<div class="detail-image-wide"><img src="'+c.image+'" alt="'+c.name+'" loading="lazy"'+imgScaleStyle+'></div>';
+    html += '<div class="detail-image-wide"><img src="'+c.image+'" alt="'+c.name+'" loading="lazy"'+imgScaleStyle+'>'+artCreditHtml+'</div>';
     html += basicHtml;
   } else if(c.image){
     html += '<div class="detail-hero">'+
       headHtml+
-      '<div class="detail-hero-image"><img src="'+c.image+'" alt="'+c.name+'" loading="lazy"'+imgScaleStyle+'></div>'+
+      '<div class="detail-hero-image"><img src="'+c.image+'" alt="'+c.name+'" loading="lazy"'+imgScaleStyle+'>'+artCreditHtml+'</div>'+
       basicHtml+
     '</div>';
   } else {

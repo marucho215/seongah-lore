@@ -638,7 +638,7 @@ var CHARS = {
     "imageScale": 1.15,
     "category": "sin",
     "ability": "노이즈 캔슬링 (Absolute Focus)",
-    "intro": "전면전에 나서는 일은 죽기보다 싫어하는 후방 지원가. 전투가 벌어지면 가장 먼저 안전한 구석(환풍구, 교탁 밑 등)을 확보하고, 드론과 해킹을 통해 아군에게 경로와 자원을 제공하는 걸어 다니는 보급고.",
+    "intro": "전면전에 나서는 일은 죽기보다 싫어하는 후방 지원가.",
     "voicebank": "https://bowlroll.net/file/356537",
     "basic": [
       [
@@ -722,7 +722,7 @@ var CHARS = {
     "imageLayout": "portrait",
     "category": "virtue",
     "ability": "마그나 카르타 (Magna Carta)",
-    "intro": "성아고의 걸어 다니는 규칙이자 시계. 1분 1초의 오차도 허용하지 않는 완벽주의자. 깐깐해 보이는 교칙들은 사실 괴이한 성아여고에서 학생들을 살려내기 위한 생존 지침서.",
+    "intro": "성아고의 걸어 다니는 규칙이자 시계. 1분 1초의 오차도 허용하지 않는 완벽주의자.",
     "voicebank": "https://bowlroll.net/file/362472",
     "basic": [
       [
@@ -1303,7 +1303,7 @@ var CHARS = {
     "alias": "쾌락의 탐식가",
     "category": "sin",
     "ability": "포식 (Devour)",
-    "intro": "세이야 쌍둥이 중 5분 일찍 태어난 오빠.",
+    "intro": "항상 배가 고프다. 안대 밑은 궁금해하지 않는 편이 낫다.",
     "basic": [
       [
         "성별",
@@ -1564,6 +1564,7 @@ var CHARS = {
     "category": "virtue",
     "ability": "루트 권한 (Root Access)",
     "intro": "학교의 코어 시스템과 자신의 늙은 육체를 융합시킨 살아있는 생체 서버.",
+    "previewAge": "",
     "voicebank": "https://bowlroll.net/file/358027",
     "basic": [
       [
@@ -2277,8 +2278,9 @@ function renderCharacterCategory(cat){
       var c = CHARS[id];
       var affil = c.basic.filter(function(b){return b[0]==="소속";})[0];
       var age = c.basic.filter(function(b){return b[0]==="나이";})[0];
+      var previewAge = c.previewAge !== undefined ? c.previewAge : (age?age[1]:"");
       return '<div class="char-card">'+
-        '<div class="cc-top"><span class="cc-affil">'+(affil?affil[1]:"")+'</span><span class="cc-age">'+(age?age[1]:"")+'</span></div>'+
+        '<div class="cc-top"><span class="cc-affil">'+(affil?affil[1]:"")+'</span><span class="cc-age">'+previewAge+'</span></div>'+
         '<div class="cc-name">'+c.name.replace(/\s*\(.*?\)\s*$/,"")+'</div>'+
         '<div class="cc-alias">'+(c.alias||"")+'</div>'+
         '<div class="cc-ability"><b>'+c.ability+'</b></div>'+
